@@ -1,5 +1,5 @@
 <template>
-	<header class="z-50 bg-orange-100 xl:py-2 drop-shadow-md">
+	<header class="z-50 bg-gray-100 xl:py-2 drop-shadow-md">
 		<nav
 	  class="container px-2 py-2 mx-auto md:flex md:justify-between md:items-center xl:px-4"
    >
@@ -15,7 +15,7 @@
 				<Menu :v-slot="{ open }" as="div" class="relative inline-block text-left">
 					<div  class="max-w-md">
 						<MenuButton @click="handleDropdownMenu"
-							class="cursor-pointer inline-flex justify-center w-full px-4 py-2 text-sm max-w-md font-medium text-white bg-orange-400 rounded-md hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+							class="cursor-pointer inline-flex justify-center w-full px-4 py-2 text-sm max-w-md font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 			   <label class="cursor-pointer" v-show="!walletAddress">Connect Keplr Wallet</label>
 			   <label class="cursor-pointer truncate max-w-[15rem]" :v-show="walletAddress">{{walletAddress}}</label>
 			   <ChevronDownIcon v-show="walletAddress" class="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100" aria-hidden="true" />
@@ -37,7 +37,7 @@
 		<MenuItem v-slot="{ active }">
 		<button @click="copyAddrToClipboard"
 	  :class="[
-	  active ? 'bg-orange-200 text-black' : 'text-gray-700',
+	  active ? 'bg-red-200 text-black' : 'text-gray-700',
 	  'group flex rounded-md items-center w-full px-2 py-2 text-sm',
 	  ]"
 	  >
@@ -46,7 +46,7 @@
 		</MenuItem>
 		<MenuItem v-slot="{ active }">
 		<button @click="disconnectKeplr"
-	  :class="[ active ? 'bg-orange-200 text-black' : 'text-gray-700',
+	  :class="[ active ? 'bg-red-200 text-black' : 'text-gray-700',
 	  'group flex rounded-md items-center w-full px-2 py-2 text-sm', ]"
 	  >
 	  Disconnect

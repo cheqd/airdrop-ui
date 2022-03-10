@@ -54,7 +54,7 @@
               <div class="mt-4 px-4 flex w-full justify-end gap-4">
                 <button
                   type="button"
-                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-orange-900 bg-red-200 border border-transparent rounded-md hover:bg-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-orange-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                   @click="closeModal"
                 >
 				Close

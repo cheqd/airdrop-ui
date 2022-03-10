@@ -14,7 +14,7 @@ export default {
 
 <style>
 	.bg-img {
-		background-image: url("assets/images/main-bg-orange-hr.png");
+		background-image: url("assets/images/main-bg-red.png");
 		background-repeat: 100% 100%;
 		background-size: cover;
 		height: 100%;

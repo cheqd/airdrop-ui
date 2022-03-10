@@ -1,15 +1,15 @@
 <template>
 	<div class="flex overflow-x-hidden overflow-y-auto flex-col items-center justify-center min-h-[90vh] sm:items-center sm:pt-0 2xl:justify-start 2xl:mt-8">
 		<div class="z-10">
-			<button @click="cheqdio" class="border-orange-400 border-opacity-80 border-2 px-4 font-semibold py-2 mx-2 rounded-md bg-orange-100 hover:bg-orange-200
+			<button @click="cheqdio" class="border-red-400 border-opacity-80 border-2 px-4 font-semibold py-2 mx-2 rounded-md bg-red-50 hover:bg-red-200
 			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
 				About Cheqd
 			</button>
-			<button @click="omniflix" class="border-orange-400 border-2 px-4 border-opacity-80 font-semibold py-2 mx-2 my-2 rounded-md bg-orange-100 hover:bg-orange-200
+			<button @click="omniflix" class="border-red-400 border-2 px-4 border-opacity-80 font-semibold py-2 mx-2 my-2 rounded-md bg-red-50 hover:bg-red-200
 			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
 				Delegate & Vote
 			</button>
-			<button @click="osmosis" class="border-orange-400 border-2 border-opacity-80 px-4 font-semibold py-2 mx-2 my-2 rounded-md bg-orange-100 hover:bg-orange-200
+			<button @click="osmosis" class="border-red-400 border-2 border-opacity-80 px-4 font-semibold py-2 mx-2 my-2 rounded-md bg-red-50 hover:bg-red-200
 			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
 				Liquidity Pools
 			</button>
@@ -21,7 +21,7 @@
 			<!-- </div> -->
 
 			<div class="w-4/6 py-2 h-full max-w-2xl sm:px-6 rounded-lg drop-shadow-lg xl:max-w-4xl">
-				<div class="bg-orange-200 flex flex-col overflow-hidden shadow sm:rounded-lg p-4">
+				<div class="bg-red-200 flex flex-col overflow-hidden shadow sm:rounded-lg p-4">
 					<h2 class="text-2xl text-gray-900 py-2 text-center leading-7 font-bold 2xl:text-4xl">
 						Cheqd Community Airdrop
 					</h2>
@@ -30,7 +30,7 @@
 					<!-- 		<progress class="rounded-lg w-5/6 bg-white h-2" value="10" max="100"> -->
 					<!-- 	</progress> -->
 					<!-- </div> -->
-					<div class="bg-orange-200 -mx-4 -mb-4">
+					<div class="bg-red-200 -mx-4 -mb-4">
 					<!-- <label class="justify-self-start px-4 text-2xl pt-2 font-bold text-gray-700 2xl:text-3xl">Missions</label> -->
 					<div class="flex flex-col w-full py-4 pb-6 h-full items-center justify-center">
 						<Mission
