@@ -9,7 +9,12 @@ module.exports = {
 		"./plugins/**/*.{js,ts}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			backgroundImage: {
+				'main-bg-orange': "url('assets/images/main-bg-orange.png')",
+				'modal-bg-orange': "url('assets/images/modal-bg-red.png')",
+			}
+		},
 	},
 	plugins: [],
 }

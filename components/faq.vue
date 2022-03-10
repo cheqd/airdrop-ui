@@ -1,11 +1,11 @@
 
 <template>
-	<h2 class="text-2xl py-2 text-orange-900 font-bold">FAQ</h2>
-  <div class="w-full">
-    <div class="w-full my-2 max-w-lg p-2 mx-auto rounded-2xl">
+  <div class="w-full mx-4">
+	  <h2 class="text-2xl pt-2 text-orange-900 text-center font-bold">FAQ</h2>
+    <div class="w-full max-w-lg p-2 mx-auto rounded-2xl">
 		<Disclosure v-for="(faq, i) in faqs" :key="i" v-slot="{open}">
         <DisclosureButton
-          class="flex justify-between w-full px-4 py-4 text-sm font-medium text-left text-orange-900 bg-white rounded-lg hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 2xl:px-6 2xl:text-lg"
+          class="flex justify-between w-full px-2 py-3 text-xs font-medium text-left text-orange-900 bg-white rounded-lg hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 2xl:px-6 2xl:text-lg"
         >
 		<span>{{faq.title}}</span>
           <ChevronUpIcon
