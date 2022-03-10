@@ -32,7 +32,7 @@
 					<!-- </div> -->
 					<div class="bg-orange-200 -mx-4 -mb-4">
 					<!-- <label class="justify-self-start px-4 text-2xl pt-2 font-bold text-gray-700 2xl:text-3xl">Missions</label> -->
-					<div class="flex flex-col w-full py-4 h-full items-center justify-center">
+					<div class="flex flex-col w-full py-4 pb-6 h-full items-center justify-center">
 						<Mission
 						v-for="(mission,i) in missions"
 						v-bind:key="i" 
