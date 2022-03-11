@@ -63,24 +63,23 @@
 </template>
 
 <script setup lang="ts">
-import type { Keplr, ChainInfo } from '@keplr-wallet/types';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
 import {ref, onBeforeMount} from 'vue';
+import {Keplr} from '../server/api/keplr';
+
+const keplr = new Keplr();
 
 let walletAddress = ref('');
 let open = ref(false);
 
 onBeforeMount(async () => {
-	const addr = await localStorage.getItem('cheqd-addr')
-	if (addr) {
-		keplrSuggestChain()
-	}
+	walletAddress.value = await keplr.getAddressFromLocalStorage();
 })
 
 const disconnectKeplr = async () => {
 	walletAddress.value = undefined;
-	localStorage.removeItem('cheqd-addr');
+	keplr.disconnect();
 	toggleDropDown()
 }
 
@@ -102,65 +101,4 @@ const handleDropdownMenu = () => {
 	toggleDropDown();
 }
 
-const keplrSuggestChain = async () => {
-	    // @ts-ignore: Keplr Check is valid here
-	if (!window?.keplr) {
-		alert('please install keplr');
-		return
-	}
-
-	// @ts-ignore: Keplr Check is valid here
-	const keplr:Keplr = window.keplr;
-
-	const chainInfo: ChainInfo = {
-		chainId: "cheqd-mainnet-1",
-		chainName: "cheqd",
-		rpc: "https://rpc.cheqd.net",
-		rest: "https://api.cheqd.net",
-		bip44: {
-			coinType: 118,
-		},
-		bech32Config: {
-			bech32PrefixAccAddr: "cheqd",
-			bech32PrefixAccPub: "cheqd" + "pub",
-			bech32PrefixValAddr: "cheqd" + "valoper",
-			bech32PrefixValPub: "cheqd" + "valoperpub",
-			bech32PrefixConsAddr: "cheqd" + "valcons",
-			bech32PrefixConsPub: "cheqd" + "valconspub",
-		},
-		currencies: [ 
-			{ 
-				coinDenom: "CHEQ", 
-				coinMinimalDenom: "ncheq", 
-				coinDecimals: 9,
-			}, 
-		],
-		feeCurrencies: [
-			{
-				coinDenom: "CHEQ",
-				coinMinimalDenom: "ncheq",
-				coinDecimals: 9,
-			},
-		],
-		stakeCurrency: {
-			coinDenom: "CHEQ",
-			coinMinimalDenom: "ncheq",
-			coinDecimals: 9,
-		},
-		coinType: 118,
-		gasPriceStep: {
-			low: 0.000000025,
-			average: 0.00000005,
-			high: 0.0000001,
-		},
-	}
-
-	await keplr.experimentalSuggestChain(chainInfo)
-
-	// @ts-ignore: keplr has getOfflineSigner
-	let keplrOfflineSigner = window.getOfflineSigner('cheqd-mainnet-1')
-	const walletList = await keplrOfflineSigner.getAccounts()
-	walletAddress.value = walletList[0].address
-	localStorage.setItem('cheqd-addr', walletAddress.value)
-}
 </script>

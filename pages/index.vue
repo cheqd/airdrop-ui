@@ -1,13 +1,17 @@
 <template>
-	<div class="overflow-x-hidden min-h-screen h-full w-full overflow-y-hidden">
-		<Hero />
-		<!-- <GetStarted /> -->
+	<div class="h-full w-full min-h-screen overflow-y-hidden overflow-x-hidden">
+		<GetStarted />
 	</div>
 </template>
 
 <script setup lang="ts">
-import Hero from '../components/hero.vue';
-import GetStarted from '../components/getStarted.vue';
+	// @ts-ignore
+	import GetStarted from '../components/getStarted.vue';
+
+	import { provideToast } from "vue-toastification";
+	import "vue-toastification/dist/index.css";
+
+	provideToast({maxToasts: 5});
 </script>
 
 <style>
