@@ -121,7 +121,6 @@ export default {
 		},
 		toggleModal() {
 			this.showModal = !this.showModal
-			console.log('called toggle', this.showModal)
 		},
 		osmosis() {
 			window.open("https://app.osmosis.zone/pool/602", "_blank")

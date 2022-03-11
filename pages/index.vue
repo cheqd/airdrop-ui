@@ -8,10 +8,6 @@
 	// @ts-ignore
 	import GetStarted from '../components/getStarted.vue';
 
-	import { provideToast } from "vue-toastification";
-	import "vue-toastification/dist/index.css";
-
-	provideToast({maxToasts: 5});
 </script>
 
 <style>

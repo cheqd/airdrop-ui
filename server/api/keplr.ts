@@ -1,7 +1,10 @@
 import type { Keplr as KeplrIface, ChainInfo } from '@keplr-wallet/types';
+import { bech32 } from 'bech32';
 import HttpClient from './httpClient';
 
 export class Keplr extends HttpClient {
+	protected readonly keplr:KeplrIface;
+
     public constructor() {
         super('cheqd-mainnet-1', 'http://localhost:5000/auth')
     }
@@ -13,14 +16,20 @@ export class Keplr extends HttpClient {
 		}
 
 		// @ts-ignore: Keplr Check is valid here
-		const keplr:KeplrIface = window.keplr;
 		await keplr.experimentalSuggestChain(this.cheqdChainInfo)
+		try {
+			const addr = await this.getCheqAddress()
+			this.storeAddressLocally(addr)
+		} catch (err) {
+			return Promise.reject(err)
+		}
+
 		return Promise.resolve('keplr extension connected successfully')
 	}
 
 	public getCheqAddress = async () => {
 		// @ts-ignore: keplr has getOfflineSigner
-		if (window.getOfflineSigner) {
+		if (window.keplr && window.getOfflineSigner) {
 			// @ts-ignore
 			let keplrOfflineSigner = window.getOfflineSigner(this.NetworkId)
 			const walletList = await keplrOfflineSigner.getAccounts()
@@ -28,6 +37,11 @@ export class Keplr extends HttpClient {
 		}
 
 		return Promise.reject('Keplr Extension has not been connected')
+	}
+	
+	public getAllCosmosNetworkWallet = async (addr: string, prefix: string) => {
+		const raw = bech32.decode(addr)
+		return bech32.encode(prefix, raw.words)
 	}
 
 	public storeAddressLocally = async (address: string) => {

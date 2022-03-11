@@ -67,6 +67,9 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
 import {ref, onBeforeMount} from 'vue';
 import {Keplr} from '../server/api/keplr';
+import { useToast, } from "vue-toastification";
+const toast = useToast();
+const showToast = (msg: string, options?:any) => toast(msg, options);
 
 const keplr = new Keplr();
 
@@ -74,12 +77,15 @@ let walletAddress = ref('');
 let open = ref(false);
 
 onBeforeMount(async () => {
-	walletAddress.value = await keplr.getAddressFromLocalStorage();
+	keplr.getAddressFromLocalStorage().then(addr => {
+		walletAddress.value = addr
+	}).catch(err => console.error(err))
 })
 
 const disconnectKeplr = async () => {
 	walletAddress.value = undefined;
 	keplr.disconnect();
+	window.location.href="/"
 	toggleDropDown()
 }
 
@@ -92,9 +98,10 @@ const toggleDropDown =() => {
 	open.value = !open.value
 }
 
-const handleDropdownMenu = () => {
+const handleDropdownMenu = async () => {
 	if (!walletAddress.value || walletAddress.value === '') {
-		keplrSuggestChain()
+		await keplr.keplrSuggestChain()
+		walletAddress.value = await keplr.getCheqAddress()
 		return
 	}
 
