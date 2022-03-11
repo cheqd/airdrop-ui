@@ -12,6 +12,7 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				'main-bg-orange': "url('assets/images/main-bg-orange.png')",
+				'main-bg-orange-veritcal': "url('assets/images/main-bg-orange-vertical.png')",
 				'modal-bg-orange': "url('assets/images/modal-bg-red.png')",
 			}
 		},
