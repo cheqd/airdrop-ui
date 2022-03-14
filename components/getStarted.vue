@@ -55,12 +55,14 @@ export default {
 	import {CheqdRest} from '../server/api/cheqd';
 	const keplr = new Keplr();
 	const cheqdRest = new CheqdRest();
+	
 
 	import { useToast } from "vue-toastification";
     const toast = useToast();
 	const showToast = (msg: string, options?:any) => toast(msg, options);
 	let initalClaimDone = ref(true);
 	let showClaimForm = ref(false);
+	let address = ref('');
 
 	const toggleCheqdAddr = async () => {
 		const claimed = await cheqdRest.getInitalClaimInfo();
@@ -70,21 +72,49 @@ export default {
 		showClaimForm.value = !showClaimForm.value
 	}
 
+	const getWalletAddress = async () => {
+		const {data, error } = await keplr.getCheqAddress()
+		if (data) {
+			return data;
+		}
+
+		throw error;
+
+	}
+
 	onBeforeMount(async () => {
-		keplr.getAddressFromLocalStorage().then((addr) => {
-			window.location.href = "/claim"
-		}).catch(err => {
-			console.log(err)
-		})
-		return
+		const { data, error } = await keplr.getAddressFromLocalStorage();
+		if (data) {
+			address.value = data;
+			return
+		}
+
+		console.error('onBeforeMount - getStarted: ', error)
+
 	})
 
-	const handleWalletConnect = () => {
-		keplr.keplrSuggestChain().then(async data => {
-			window.location.href="/claim"
-		}).catch(err => {
-			showToast(err, { type: "error" })
-		})
+	const handleWalletConnect = async () => {
+		const { error } = await keplr.keplrSuggestChain()
+		if (error) {
+			showToast(error, { type: "error" })
+			return
+		}
+
+		const claimed = await cheqdRest.getInitalClaimInfo();
+		if (!claimed) {
+			const {error, data} = await getWalletAddress();
+			if (error) {
+				showToast(error, {type: "error"})
+				return
+			}
+
+			address.value = data;
+			initalClaimDone.value = false;
+			showClaimForm.value = true
+			return
+		}
+
+		window.location.href="/claim"
 	}
 </script>
 

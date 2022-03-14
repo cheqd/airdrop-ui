@@ -77,9 +77,12 @@ let walletAddress = ref('');
 let open = ref(false);
 
 onBeforeMount(async () => {
-	keplr.getAddressFromLocalStorage().then(addr => {
-		walletAddress.value = addr
-	}).catch(err => console.error(err))
+	const {error, data } = await keplr.getAddressFromLocalStorage()
+	if (error) {
+		console.error(error)
+		return
+	}
+	walletAddress.value =data
 })
 
 const disconnectKeplr = async () => {
@@ -100,8 +103,18 @@ const toggleDropDown =() => {
 
 const handleDropdownMenu = async () => {
 	if (!walletAddress.value || walletAddress.value === '') {
-		await keplr.keplrSuggestChain()
-		walletAddress.value = await keplr.getCheqAddress()
+		const {error} = await keplr.keplrSuggestChain()
+		if (error) {
+			showToast(error, { type: "error" })
+			return
+		}
+
+		const resp = await keplr.getCheqAddress()
+		if (resp.error) {
+			showToast(resp.error, { type: "error" })
+			return
+		}
+		walletAddress.value = resp.data;
 		return
 	}
 

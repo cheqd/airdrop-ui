@@ -2,6 +2,11 @@ import type { Keplr as KeplrIface, ChainInfo } from '@keplr-wallet/types';
 import { bech32 } from 'bech32';
 import HttpClient from './httpClient';
 
+export type KeplrResponse = {
+	data?: any;
+	error?: string;
+}
+
 export class Keplr extends HttpClient {
 	protected readonly keplr:KeplrIface;
 
@@ -9,34 +14,50 @@ export class Keplr extends HttpClient {
         super('cheqd-mainnet-1', 'http://localhost:5000/auth')
     }
 
+	private response = (resp: KeplrResponse): Promise<KeplrResponse> => {
+		if (resp.error) {
+			return Promise.reject(resp)
+		}
+
+		return Promise.resolve(resp)
+	}
+
 	public keplrSuggestChain = async () => {
+		let resp: KeplrResponse = {}
+
 		// @ts-ignore: Keplr Check is valid here
 		if (!window?.keplr) {
-			return Promise.reject('Please Install Keplr Extension');
+			resp.error = "Please Install Keplr Extension"
+			return this.response(resp);
 		}
 
 		// @ts-ignore: Keplr Check is valid here
 		await keplr.experimentalSuggestChain(this.cheqdChainInfo)
-		try {
-			const addr = await this.getCheqAddress()
-			this.storeAddressLocally(addr)
-		} catch (err) {
-			return Promise.reject(err)
+		const {data, error} = await this.getCheqAddress()
+		if (error) {
+			resp.error = error;
+			return this.response(resp)
 		}
 
-		return Promise.resolve('keplr extension connected successfully')
+		this.storeAddressLocally(data)
+		resp.data = data;
+		return this.response(resp);
 	}
 
 	public getCheqAddress = async () => {
+		let resp: KeplrResponse = {}
 		// @ts-ignore: keplr has getOfflineSigner
 		if (window.keplr && window.getOfflineSigner) {
 			// @ts-ignore
 			let keplrOfflineSigner = window.getOfflineSigner(this.NetworkId)
 			const walletList = await keplrOfflineSigner.getAccounts()
-			return Promise.resolve(walletList[0].address)
+			resp.data = walletList[0].address;
+			return this.response(resp)
 		}
 
-		return Promise.reject('Keplr Extension has not been connected')
+		resp.error = "Keplr Extension has not been connected"
+
+		return this.response(resp);
 	}
 	
 	public getAllCosmosNetworkWallet = async (addr: string, prefix: string) => {
@@ -45,26 +66,38 @@ export class Keplr extends HttpClient {
 	}
 
 	public storeAddressLocally = async (address: string) => {
+		let resp: KeplrResponse = {
+			data: undefined,
+			error: undefined,
+		}
+
 		if (!address) {
-			return Promise.reject('address can not be empty');
+			resp.error = "address can not be empty"
+			return this.response(resp)
 		}
 
 		localStorage.setItem(this.LocalStorageAddrKey, address)
-		return Promise.resolve('success')
+		resp.data = "Address stored successfully"
+		return this.response(resp);
 	}
 
 	public getAddressFromLocalStorage = async () => {
+		let resp: KeplrResponse = {}
 		const address = localStorage.getItem(this.LocalStorageAddrKey)
 		if (!address) {
-			return Promise.reject('Address not found');
+			resp.error = "Address not found";
+			return this.response(resp)
 		}
 
-		return Promise.resolve(address)
+		resp.data = address;
+		return this.response(resp)
 	}
 
-	public disconnect = () => {
+	public disconnect = async () => {
+		let resp: KeplrResponse = {}
 		localStorage.removeItem(this.LocalStorageAddrKey)
-		return Promise.resolve('success')
+		resp.data = "Wallet disconnected successfully"
+		return this.response(resp);
 	}
 
 	protected cheqdChainInfo: ChainInfo = {
