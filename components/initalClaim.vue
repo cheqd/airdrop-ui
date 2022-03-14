@@ -9,14 +9,13 @@
 						class="block h-14 w-full px-4 py-2 text-gray-800 bg-white border rounded-md focus:border-orange-600 focus:outline-orange-300 focus:ring-orange-70 text-ellipsis"
 						placeholder="cosmos address"
 						v-model="address"
+						@input="handleAddressInput"
    />
-					<span class="text-red-400">{{error}}</span>
-					<div class="flex justify-center gap-4 py-4">
+					<span v-if="showFormError" class="text-red-400"> {{formError}} </span>
+					<div class="flex justify-center py-4">
 					<button
 						@click="calculateRewards"
-						class="cursor-pointer inline-flex justify-center w-1/3 x-2 py-2 text-lg max-w-md font-medium
-						text-white bg-orange-400 rounded-md hover:bg-orange-500 focus:outline-none
-						focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+						class="cursor-pointer inline-flex justify-center w-1/3 x-2 py-2 text-lg max-w-md font-medium text-white bg-orange-400 rounded-md hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
 						>
 						Claim
 					</button>
@@ -41,13 +40,15 @@
 						<div class="w-full flex justify-around items-center px-0 mx-0">
 							<div>
 								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
+								</label>
+								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
 									100 CHEQ
 								</label>
 							</div>
 							<div class="flex items-start flex-col">
 								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
 									<CheckIcon class="text-green-600 h-6 w-6" />
-									Cosmos
+									Cosmos - 40 CHEQ
 								</label>
 								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
 									<XIcon class="text-red-600 h-6 w-6" />
@@ -55,7 +56,7 @@
 								</label>
 								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
 									<CheckIcon class="text-green-600 h-6 w-6" />
-									Juno
+									Juno - 20 CHEQ
 								</label>
 							</div>
 						</div>
@@ -76,7 +77,7 @@
 							</span>
 						</button>
 						<button type="button"
-							@click="claimInitalRewards"
+							@click="() => claimInitalRewards(address)"
 							class="inline-flex justify-center px-4 py-1 text-md font-medium border-orange-900 border-2 text-orange-900 bg-orange-50 rounded-md hover:bg-orange-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
 	 >
 							<svg 
@@ -114,8 +115,29 @@ export default {
 	import {defineProps,ref} from 'vue';
 	import { CheckIcon, XIcon, BeakerIcon } from '@heroicons/vue/outline'
 	import GenericModal from './genericModal.vue';
+	import {Keplr} from '../server/api/keplr';
 	let isOpen = ref(false);
 	let claimInProgress = ref(false);
+	let showFormError = ref(false);
+	let formError = ref('');
+	const keplr = new Keplr()
+
+	/*
+	const handleAddressInput = (e) => {
+		try {
+			keplr.validateCosmosNetowrkAddress(e.target.value)
+		}
+		catch (e) {
+			showFormError.value = true;
+			formError.value = e
+			console.log('formerror: ', e)
+			return
+		}
+
+		showFormError.value = false;
+		formError.value = '';
+	}
+	*/
 
 	const toggleModal = () => {
 		isOpen.value = !isOpen.value
@@ -125,7 +147,14 @@ export default {
 		toggleModal()
 	}
 
-	const claimInitalRewards = ()=> {
+	const claimInitalRewards = async (addr) => {
+		const { error } = keplr.validateCosmosNetowrkAddress(addr)
+		if (error) {
+			showFormError.value = true;
+			formError = error
+			return
+		}
+
 		claimInProgress.value = true
 		setTimeout(() => {
 			window.location.href = "/claim"

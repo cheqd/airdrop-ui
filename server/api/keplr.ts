@@ -1,10 +1,10 @@
 import type { Keplr as KeplrIface, ChainInfo } from '@keplr-wallet/types';
-import { bech32 } from 'bech32';
+import { bech32, bech32m } from 'bech32';
 import HttpClient from './httpClient';
 
 export type KeplrResponse = {
 	data?: any;
-	error?: string;
+	error?: Error | string;
 }
 
 export class Keplr extends HttpClient {
@@ -65,11 +65,20 @@ export class Keplr extends HttpClient {
 		return bech32.encode(prefix, raw.words)
 	}
 
-	public storeAddressLocally = async (address: string) => {
-		let resp: KeplrResponse = {
-			data: undefined,
-			error: undefined,
+	public validateCosmosNetowrkAddress = (addr: string) => {
+		let resp: KeplrResponse = {}
+		try {
+			resp.data = bech32.decode(addr)
+		} catch (e) {
+			let error = e as Error
+			resp.error = error
 		}
+
+		return this.response(resp);
+	}
+
+	public storeAddressLocally = async (address: string) => {
+		let resp: KeplrResponse = {}
 
 		if (!address) {
 			resp.error = "address can not be empty"

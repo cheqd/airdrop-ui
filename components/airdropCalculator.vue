@@ -8,6 +8,7 @@
 	import {defineProps} from 'vue';
 
 	const label = "Airdrop Checker"
+	const detail = ""
 
 	defineProps({
 		address: String,

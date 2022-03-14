@@ -1,13 +1,13 @@
 <template>
 	<div class="flex justify-center py-8 px-4">
-		<label class="text-6xl font-bold text-center">CHEQ Community Airdrop</label>
+		<label class="text-4xl font-bold text-center">CHEQ Community Airdrop</label>
 	</div>
 	<div class="h-full p-8 w-full flex flex-col items-center justify-center min-h-[30vh] sm:items-center sm:pt-0 2xl:justify-start 2xl:items-center 2xl:mt-8">
 		<div class="h-full w-2/3 bg-opacity-75 bg-orange-200 flex flex-col py-4 justify-center items-center border-4 border-orange-400 rounded-2xl">
 		<div class="py-4 px-8">
-			<label class="font-semibold text-center text-4xl text-gray-700">Claim Airdrop</label>
+			<label class="font-semibold text-center text-3xl text-gray-700">Claim Airdrop</label>
 		</div>
-			<div class="h-full w-full pb-8 px-4 flex justify-center items-center">
+			<div class="h-full w-full pb-8 px-8 text-center flex justify-center items-center">
 				<span class="text-lg font-semibold">Connect your wallet using Keplr Extension or enter your wallet to calculate your rewards</span>
 			</div>
 			<div class="h-full w-full flex-col pt-2 gap-2 flex items-center">

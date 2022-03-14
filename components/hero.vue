@@ -15,23 +15,15 @@
 			</button>
 		</div>
 		<div class="h-full w-full flex justify-center relative items-center mt-2">
-
-			<!-- <div class="w-1/4 mx-2 py-2 max-w-md bg-white absolute left-0 drop-shadow-lg flex flex-col justify-center items-center rounded-lg h-full 2xl:max-w-xl"> -->
-			<!-- 	<Faq /> -->
-			<!-- </div> -->
-
+			<div class="w-2/6 flex justify-center px-4 bg-orange-200 rounded-lg">
+				<Faq />
+			</div>
 			<div class="w-4/6 py-2 h-full max-w-2xl sm:px-6 rounded-lg drop-shadow-lg xl:max-w-4xl">
 				<div class="bg-orange-200 flex flex-col overflow-hidden shadow sm:rounded-lg p-4">
 					<h2 class="text-2xl text-gray-900 py-2 text-center leading-7 font-bold 2xl:text-4xl">
-						Cheqd Community Airdrop
+						Mission 2 - Stage two
 					</h2>
-					<!-- <div class="w-full"> -->
-					<!-- 	<label class="text-md font-semibold text-gray-700 2xl:text-2xl">Claim Progress: 70%</label> -->
-					<!-- 		<progress class="rounded-lg w-5/6 bg-white h-2" value="10" max="100"> -->
-					<!-- 	</progress> -->
-					<!-- </div> -->
 					<div class="bg-orange-200 -mx-4 -mb-4">
-					<!-- <label class="justify-self-start px-4 text-2xl pt-2 font-bold text-gray-700 2xl:text-3xl">Missions</label> -->
 					<div class="flex flex-col w-full py-4 pb-6 h-full items-center justify-center">
 						<Mission
 						v-for="(mission,i) in missions"
