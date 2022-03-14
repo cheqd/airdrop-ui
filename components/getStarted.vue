@@ -29,7 +29,7 @@
 				</button>
 			</div>
 			<div class="w-full h-full" v-if="showClaimForm">
-				<InitialClaim />
+				<InitialClaim :address="address" />
 			</div>
 		</div>
 	</div>
@@ -102,13 +102,14 @@ export default {
 
 		const claimed = await cheqdRest.getInitalClaimInfo();
 		if (!claimed) {
-			const {error, data} = await getWalletAddress();
+			const {data, error } = await keplr.getCheqAddress()
 			if (error) {
 				showToast(error, {type: "error"})
 				return
 			}
 
 			address.value = data;
+			console.log('addrss: ', data)
 			initalClaimDone.value = false;
 			showClaimForm.value = true
 			return

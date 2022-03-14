@@ -6,7 +6,13 @@
 				{{label}}
 			</label>
 		</div>
-		<Modal :title="label" :detail="detail" :closeModal="toggleModal" :nextFunc="nextFunc" :isOpen="showModal" />
+		<Modal 
+			:title="label" 
+			:detail="detail"
+			:closeModal="toggleModal"
+			:nextFunc="nextFunc" 
+			:isOpen="showModal" 
+		/>
 	</div>
 </template>
 

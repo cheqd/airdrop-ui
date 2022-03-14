@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full w-full min-h-screen overflow-y-hidden overflow-x-hidden">
+	<div class="h-full w-full min-h-screen">
 		<GetStarted />
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <template>
 	<Navbar />
-	<div class="bg-img w-full overflow-x-hidden overflow-y-hidden">
+	<div class="bg-img w-full">
 		<slot />
 	</div>
 	<Footer />
@@ -9,6 +9,13 @@
 <script>
 export default {
 	name: "Default",
+	setup () {
+		useMeta({
+			meta: [
+				{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+			],
+		})
+	}
 }
 </script>
 
