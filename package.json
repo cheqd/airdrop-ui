@@ -6,7 +6,7 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@keplr-wallet/types": "^0.9.12",
+    "@keplr-wallet/types": "^0.8.8",
     "autoprefixer": "^10.4.2",
     "nuxt3": "latest",
     "postcss": "^8.4.8",
