@@ -1,7 +1,5 @@
 <template>
-	<div class="h-full w-full min-h-screen">
-		<GetStarted />
-	</div>
+	<GetStarted />
 </template>
 
 <script setup lang="ts">

@@ -1,9 +1,11 @@
 <template>
-	<Navbar />
-	<div class="bg-img w-full">
-		<slot />
+	<div class="h-full w-full bg-img-dark">
+		<div class="flex h-screen w-full backdrop-blur-0 divide-x divide-gray-400 bg-purple-200 bg-opacity-20 items-center justify-center">
+			<Faq />
+			<slot />
+		</div>
+		<Footer />
 	</div>
-	<Footer />
 </template>
 
 <script>
@@ -28,6 +30,14 @@ export default {
 <style>
 	.bg-img-vert {
 		background-image: url("assets/images/main-bg-orange-vertical.png");
+		background-repeat: 100% 100%;
+		background-size: cover;
+		height: 100%;
+		width: 100%;
+		z-index: 0;
+	}
+	.bg-img-dark {
+		background-image: url("assets/images/main-bg-dark-violet.png");
 		background-repeat: 100% 100%;
 		background-size: cover;
 		height: 100%;

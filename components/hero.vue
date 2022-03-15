@@ -1,24 +1,18 @@
 <template>
 	<div class="flex overflow-x-hidden overflow-y-auto flex-col items-center justify-center min-h-[90vh] sm:items-center sm:pt-0 2xl:justify-start 2xl:mt-8">
-		<div class="z-10">
-			<button @click="cheqdio" class="border-orange-400 border-opacity-80 border-2 px-4 font-semibold py-2 mx-2 rounded-md bg-orange-100 hover:bg-orange-200
-			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
-				About Cheqd
-			</button>
-			<button @click="omniflix" class="border-orange-400 border-2 px-4 border-opacity-80 font-semibold py-2 mx-2 my-2 rounded-md bg-orange-100 hover:bg-orange-200
-			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
-				Delegate & Vote
-			</button>
-			<button @click="osmosis" class="border-orange-400 border-2 border-opacity-80 px-4 font-semibold py-2 mx-2 my-2 rounded-md bg-orange-100 hover:bg-orange-200
-			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
-				Liquidity Pools
-			</button>
-		</div>
 		<div class="h-full w-full flex justify-center relative items-center mt-2">
-			<div class="w-2/6 flex justify-center px-4 bg-orange-200 rounded-lg">
-				<Faq />
-			</div>
 			<div class="w-4/6 py-2 h-full max-w-2xl sm:px-6 rounded-lg drop-shadow-lg xl:max-w-4xl">
+				<div class="z-10 w-full flex justify-center items-center my-2">
+					<button @click="cheqdio" class="border-orange-400 border-opacity-80 border-2 px-4 font-semibold py-2 mx-2 rounded-md bg-orange-100 hover:bg-orange-200 2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
+						About Cheqd
+					</button>
+					<button @click="omniflix" class="border-orange-400 border-2 px-4 border-opacity-80 font-semibold py-2 mx-2 my-2 rounded-md bg-orange-100 hover:bg-orange-200 2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
+						Delegate & Vote
+					</button>
+					<button @click="osmosis" class="border-orange-400 border-2 border-opacity-80 px-4 font-semibold py-2 mx-2 my-2 rounded-md bg-orange-100 hover:bg-orange-200 2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
+						Liquidity Pools
+					</button>
+				</div>
 				<div class="bg-orange-200 flex flex-col overflow-hidden shadow sm:rounded-lg p-4">
 					<h2 class="text-2xl text-gray-900 py-2 text-center leading-7 font-bold 2xl:text-4xl">
 						Mission 2 - Stage two

@@ -1,12 +1,26 @@
-
 <template>
-	<div class="w-full mx-4">
-		<h2 class="text-2xl pt-2 text-orange-900 text-center font-bold">FAQ</h2>
-		<div v-for="(faq,i) in faqs" :key="i" class="text-center cursor-pointer w-full max-w-lg bg-orange-100 p-2 my-2 mx-auto rounded-md">
-			<span class="text-sm">{{faq.title}}</span>
+	<div class="h-full my-4 flex-col items-center w-1/5 flex justify-start mt-8 py-2 rounded-lg xl:mx-4" >
+		<picture>
+			<img class="opacity-80" src="assets/images/cheqd-logo-wordmark-black.png" />
+		</picture>
+		<div class="w-full min-h-max pt-8">
+			<h2 class="text-2xl pt-2 px-2 text-gray-200 text-left">FAQ</h2>
+			<div v-for="(faq,i) in faqs" :key="i" 
+				:class="i===0 ? border-t : 'border-t-0'"
+				class="text-left border-2 border-r-0 border-l-0 border-b-red-200 cursor-pointer w-full py-2 my-2 mx-auto">
+				<span class="text-sm text-gray-100 w-full">{{faq.title}}</span>
+			</div>
 		</div>
   </div>
 </template>
+
+<script>
+import DefaultLayout from '../layouts/default.vue';
+
+export default {
+	layout: DefaultLayout,
+}
+</script>
 
 <script setup>
 
