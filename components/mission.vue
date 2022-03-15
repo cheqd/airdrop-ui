@@ -1,12 +1,18 @@
 <template>
-	<div  v-on:click="toggleModal" class="w-5/6 h-full cursor-pointer flex items-center bg-red-50 justify-center rounded-md border border-red-400 hover:bg-red-100 py-2 my-2 2xl:py-4 2xl:my-4">
+	<div  v-on:click="toggleModal" class="w-5/6 h-full cursor-pointer flex items-center bg-cheqd-dark-purple justify-center rounded-md hover:bg-opacity-60 py-4 my-2 2xl:py-8 2xl:my-4">
 		<div class="flex justify-center items-center">
-			<label for="mission-1-modal" class="cursor-pointer text-md font-semibold text-gray-700
+			<label for="mission-1-modal" class="cursor-pointer text-md font-semibold text-gray-200
 				xl:text-2xl xl:my-4">
 				{{label}}
 			</label>
 		</div>
-		<Modal :title="label" :detail="detail" :closeModal="toggleModal" :nextFunc="nextFunc" :isOpen="showModal" />
+		<Modal 
+			:title="label" 
+			:detail="detail"
+			:closeModal="toggleModal"
+			:nextFunc="nextFunc" 
+			:isOpen="showModal" 
+		/>
 	</div>
 </template>
 

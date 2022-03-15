@@ -1,37 +1,25 @@
 <template>
-	<div class="flex overflow-x-hidden overflow-y-auto flex-col items-center justify-center min-h-[90vh] sm:items-center sm:pt-0 2xl:justify-start 2xl:mt-8">
-		<div class="z-10">
-			<button @click="cheqdio" class="border-red-400 border-opacity-80 border-2 px-4 font-semibold py-2 mx-2 rounded-md bg-red-50 hover:bg-red-200
-			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
-				About Cheqd
-			</button>
-			<button @click="omniflix" class="border-red-400 border-2 px-4 border-opacity-80 font-semibold py-2 mx-2 my-2 rounded-md bg-red-50 hover:bg-red-200
-			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
-				Delegate & Vote
-			</button>
-			<button @click="osmosis" class="border-red-400 border-2 border-opacity-80 px-4 font-semibold py-2 mx-2 my-2 rounded-md bg-red-50 hover:bg-red-200
-			2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
-				Liquidity Pools
-			</button>
-		</div>
+	<div class="flex w-full overflow-x-hidden overflow-y-auto flex-col items-center justify-center min-h-[100vh] sm:items-center sm:pt-0 2xl:justify-center 2xl:mt-8">
+		<!-- everyday hacks -->
+		<div class="2xl:h-20" />
 		<div class="h-full w-full flex justify-center relative items-center mt-2">
-
-			<!-- <div class="w-1/4 mx-2 py-2 max-w-md bg-white absolute left-0 drop-shadow-lg flex flex-col justify-center items-center rounded-lg h-full 2xl:max-w-xl"> -->
-			<!-- 	<Faq /> -->
-			<!-- </div> -->
-
 			<div class="w-4/6 py-2 h-full max-w-2xl sm:px-6 rounded-lg drop-shadow-lg xl:max-w-4xl">
-				<div class="bg-red-200 flex flex-col overflow-hidden shadow sm:rounded-lg p-4">
+				<div class="z-10 w-full flex justify-center items-center my-2">
+					<button @click="cheqdio" class="text-gray-200 px-5 py-4 mx-2 rounded-md bg-cheqd-dark-purple hover:bg-opacity-60 2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
+						About Cheqd
+					</button>
+					<button @click="omniflix" class="text-gray-200 px-5 py-4 mx-2 my-2 rounded-md bg-cheqd-dark-purple hover:bg-opacity-60 2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
+						Delegate & Vote
+					</button>
+					<button @click="osmosis" class="text-gray-200 px-5 py-4 mx-2 my-2 rounded-md bg-cheqd-dark-purple hover:bg-opacity-60 2xl:py-4 2xl:my-6 2xl:px-6 2xl:text-lg 2xl:mx-4">
+						Liquidity Pools
+					</button>
+				</div>
+				<div class="bg-purple-200 bg-opacity-20 flex flex-col overflow-hidden shadow sm:rounded-lg p-4">
 					<h2 class="text-2xl text-gray-900 py-2 text-center leading-7 font-bold 2xl:text-4xl">
-						Cheqd Community Airdrop
+						Mission 2 - Stage two
 					</h2>
-					<!-- <div class="w-full"> -->
-					<!-- 	<label class="text-md font-semibold text-gray-700 2xl:text-2xl">Claim Progress: 70%</label> -->
-					<!-- 		<progress class="rounded-lg w-5/6 bg-white h-2" value="10" max="100"> -->
-					<!-- 	</progress> -->
-					<!-- </div> -->
-					<div class="bg-red-200 -mx-4 -mb-4">
-					<!-- <label class="justify-self-start px-4 text-2xl pt-2 font-bold text-gray-700 2xl:text-3xl">Missions</label> -->
+					<div class="-mx-4 -mb-4">
 					<div class="flex flex-col w-full py-4 pb-6 h-full items-center justify-center">
 						<Mission
 						v-for="(mission,i) in missions"
