@@ -1,8 +1,8 @@
 <template>
         <footer class="w-full h-full">
-			<div class="flex gap-4 items-center justify-center px-6 bg-cheqd-blue py-8 flex-col">
+			<div class="flex gap-4 items-center justify-center px-6 py-8 h-full flex-col">
 
-				<div class="flex flex-1 gap-2 -mx-2">
+				<div class="flex flex-1 gap-2">
 
 					<a href="#" class="mx-2 text-gray-800 " aria-label="Twitter">
 						<svg class="w-10 h-10 fill-current hover:text-cheqd-light-blue text-gray-200"

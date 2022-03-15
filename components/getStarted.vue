@@ -1,18 +1,18 @@
 <template>
-	<div 
-	 class="h-full w-full flex-col items-center flex justify-center px-4 rounded-lg xl:mx-8"
-	>
-		<div class="w-full my-4 min-h-max mx-4">
-			<div class="flex items-center justify-center py-8 px-4">
+	<div class="h-full min-h-screen w-full flex-col items-center flex justify-start px-4 rounded-lg xl:mx-8" >
+		<div class="w-full h-full mx-4">
+			<div class="flex items-center justify-center px-4">
 				<label class="text-4xl font-bold text-gray-100 text-center">CHEQ Community Airdrop</label>
 			</div>
-			<div class="h-full p-8 w-full flex flex-col items-center justify-center min-h-[30vh] sm:items-center sm:pt-0 2xl:justify-start 2xl:items-center 2xl:mt-8">
-				<div class="h-full w-2/3 bg-gray-900 bg-opacity-60
-						flex flex-col py-4 justify-center items-center border-2 border-gray-300 rounded-2xl">
+
+			<div class="h-1/3 px-8  w-full flex flex-col items-center justify-center sm:items-center sm:pt-0 2xl:justify-start 2xl:items-center 2xl:mt-8">
+				<div 
+					class="h-full w-2/3 bg-gray-900 bg-opacity-60 flex flex-col justify-center items-center 
+					border-2 border-gray-300 rounded-2xl">
 				<div class="py-4 px-8">
 					<label class="font-semibold text-center text-3xl text-gray-100">Claim Airdrop</label>
 				</div>
-				<div class="h-full w-full pb-8 px-8 text-center flex justify-center items-center">
+				<div class="h-full w-full px-8 text-center flex justify-center items-center">
 				  <span class="text-lg text-gray-100">
 					  Connect your wallet using Keplr Extension or enter your wallet to calculate your rewards
 				  </span>
