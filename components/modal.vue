@@ -30,7 +30,7 @@
             leave-to="opacity-0 scale-95"
           >
             <div
-              class="inline-block relative p-5 bg-white w-1/2 text-center container max-w-2xl overflow-hidden align-middle transition-all transform shadow-xl rounded-2xl"
+              class="inline-block relative p-5 bg-white w-1/2 text-center container max-w-5xl overflow-hidden align-middle transition-all transform shadow-xl rounded-2xl"
             >
 			<div class="-mx-5 z-0 -mt-8">
 				<picture>

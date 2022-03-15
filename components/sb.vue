@@ -1,7 +1,7 @@
 <template>
 	<client-only>
-	<div class="h-full min-h-[100vh] w-full flex flex-col justify-center items-center">
-		<div>
+	<div class="h-full min-h-[100vh] w-full flex flex-col justify-start items-center">
+		<div class="pt-2">
 			<img class="w-56 2xl:w-64" src="assets/images/cheqd-logo-wordmark-black.png" />
 		</div>
 
@@ -10,10 +10,10 @@
 			<Menu :v-slot="{ open }" as="div" class="relative inline-block text-left">
 				<div  class="max-w-md">
 					<MenuButton @click="handleDropdownMenu"
-						class="cursor-pointer inline-flex justify-center w-full px-5 py-4 text-sm font-medium text-white bg-cheqd-dark-purple rounded-md hover:bg-opacity-60 :outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-						<label class="cursor-pointer" v-show="!walletAddress">Connect Keplr Wallet</label>
+						class="cursor-pointer inline-flex justify-center px-4 w-64 2xl:w-80 2xl:py-6 py-4 text-sm font-medium text-white bg-cheqd-dark-purple rounded-lg hover:bg-opacity-60 :outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+						<label class="cursor-pointer 2xl:text-lg" v-show="!walletAddress">Connect Keplr Wallet</label>
 						<label class="cursor-pointer truncate max-w-[15rem]" :v-show="walletAddress">{{walletAddress}}</label>
-						<ChevronDownIcon v-show="walletAddress" class="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100" aria-hidden="true" />
+						<ChevronDownIcon v-show="walletAddress" class="w-8 2xl:w-6 ml-2 -mr-1 text-gray-100 hover:text-violet-100" aria-hidden="true" />
 					</MenuButton>
 				</div>
 				<transition
@@ -104,6 +104,7 @@ export default {
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { BeakerIcon } from '@heroicons/vue/outline'
+import { ChevronDownIcon } from '@heroicons/vue/solid'
 import {ref, onBeforeMount} from 'vue';
 import {Keplr} from '../server/api/keplr';
 import { useToast, } from "vue-toastification";

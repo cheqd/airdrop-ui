@@ -15,7 +15,7 @@
 					<div class="flex justify-center py-4">
 					<button
 						@click="calculateRewards"
-						class="cursor-pointer inline-flex justify-center w-1/3 x-2 py-2 text-lg max-w-md font-medium text-white bg-cheqd-purple-light rounded-md hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+						class="cursor-pointer inline-flex justify-center w-2/5 x-2 py-3 text-lg max-w-md text-white bg-cheqd-purple-light rounded-md hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
 						>
 						Claim
 					</button>
@@ -29,7 +29,7 @@
 					</div>
 			</form>
 			<GenericModal :closeModal="toggleModal" :isOpen="isOpen">
-			<div class="h-full w-full bg-[#140e2d] opacity-90 p-4 border-2 rounded-2xl border-gray-100">
+			<div class="h-full w-full bg-[#140e2d] p-4 border-1 rounded-2xl border-gray-100">
 				<div class="flex flex-col justify-center items-center w-full h-full">
 					<div class="mt-4">
 						<label class="text-2xl text-gray-300 font-semibold">Airdrop - Calculate Rewards</label>
