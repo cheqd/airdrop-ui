@@ -2,7 +2,9 @@
 	<client-only>
 	<div class="h-full min-h-[70vh] lg:min-h-screen w-full flex flex-col justify-start items-center">
 		<div class="hidden lg:block pt-2">
-			<img class="w-56 2xl:w-64" src="assets/images/cheqd-logo-light.png" />
+			<a href="/">
+				<img class="w-56 2xl:w-64" src="assets/images/cheqd-logo-light.png" />
+			</a>
 		</div>
 
 		<!-- Button + Dropdown Menu -->

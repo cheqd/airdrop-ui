@@ -1,8 +1,14 @@
 <template>
+	<client-only>
 	<div class="flex w-full overflow-x-hidden overflow-y-auto flex-col items-center justify-center h-full lg:min-h-[100vh] sm:items-center sm:pt-0 2xl:justify-center 2xl:mt-8">
 		<!-- everyday hacks -->
 		<div class="2xl:h-20" />
-		<div class="h-full w-full flex justify-center relative items-center mt-2">
+		<div class="cursor-pointer w-full flex justify-center lg:hidden">
+			<a href="/">
+			<img class="p-0 m-0 w-40 2xl:w-64" src="assets/images/cheqd-logo-light.png" />
+			</a>
+		</div>
+		<div class="h-full w-full flex justify-center relative items-center">
 			<div class="w-full py-2 h-full max-w-2xl sm:px-6 rounded-lg drop-shadow-lg xl:max-w-4xl">
 				<div class="z-10 w-full flex justify-center items-center my-2">
 					<button @click="cheqdio" class="text-gray-200 px-5 py-4 mx-2 rounded-md bg-cheqd-dark-purple hover:bg-opacity-60 2xl:py-4 2xl:my-6 text-sm 2xl:px-6 lg:text-lg 2xl:mx-4">
@@ -39,6 +45,7 @@
 			</div>
 		</div>
 	</div>
+	</client-only>
 </template>
 
 <script lang="ts">
@@ -53,6 +60,11 @@ import Faq from './faq.vue';
 
 let isCalculateLoading = false;
 let isClaimLoading = false;
+
+const gotoHome = () => {
+	console.log('lskjflksd')
+	window.location.href="/"
+}
 
 const showModal = ref(false);
 const missions = [

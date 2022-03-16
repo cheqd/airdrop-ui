@@ -34,12 +34,12 @@
             >
 			<div class="-mx-5 z-0 -mt-8">
 				<picture>
-					<img class="-z-10" :src="bgImgPath" alt="mission-1" />
+					<img class="-z-10 h-1/5" :src="bgImgPath" alt="mission-1" />
 				</picture>
 			</div>
               <DialogTitle
                 as="h3"
-                class="text-2xl w-full -mt-16 top-1/2 break-words left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute font-bold text-center leading-6 z-50 text-orange-200"
+                class="text-2xl w-full -mt-16 lg:-mt-10 top-1/2 break-words left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute font-bold text-center leading-6 z-50 text-gray-300"
               >
 				{{title}}
               </DialogTitle>
@@ -54,14 +54,14 @@
               <div class="mt-4 px-4 flex w-full justify-end gap-4">
                 <button
                   type="button"
-                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-orange-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-gray-800 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                   @click="closeModal"
                 >
 					Close
                 </button>
                 <button
                   type="button"
-                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-gray-800 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
 				  @click="nextFunc"
                 >
 					Learn More

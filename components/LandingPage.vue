@@ -1,21 +1,21 @@
 <template>
 	<client-only>
-	<div class="h-full min-h-[100vh] w-full flex flex-col justify-start items-center 2xl:justify-center">
+	<div class="h-full min-h-[100vh] max-h-max w-full flex flex-col justify-start items-center 2xl:justify-center">
 		<div class="py-4">
 			<label class="text-5xl font-bold text-gray-100 2xl:text-6xl">CHEQ Airdrop</label>
 			{{scope}}
 		</div>
 
-		<div :class="minWindowHeightPx" class="2xl:h-1/3 py-8 w-5/6 bg-purple-200 bg-opacity-20 flex flex-col justify-center items-center border-1 border-gray-300 rounded-2xl"
+		<div :class="minWindowHeightPx" class="2xl:h-1/3 py-4 lg:py-8 w-5/6 bg-purple-200 bg-opacity-20 flex flex-col justify-center items-center border-1 border-gray-300 rounded-2xl"
 		>
 			<div class="flex flex-col text-center ">
 				<label class="text-3xl font-semibold text-gray-200 2xl:text-5xl">Claim Airdrop</label>
-				<span class="text-lg text-gray-200 mt-2 2xl:mt-4 2xl:text-2xl">
+				<span class="text-md lg:text-lg text-gray-200 mt-2 lg:mt-4 2xl:text-2xl">
 					Connect your wallet using Keplr Extension or enter your wallet to calculate your rewards
 				</span>
 			</div>
 
-			<div class="h-16" />
+			<div class="h-6 lg:h-16" />
 
 			<div class="flex justify-center items-center w-full flex-col gap-4">
 				  <button @click="handleWalletConnect"
@@ -41,7 +41,7 @@
 				<InitialClaim label="Enter your cheq, cosmos, juno or osmo address" :address="address" />
 			</div>
 		</div>
-		<div class="pt-10 flex flex-col justify-center text-center gap-2 items-center w-full">
+		<div class="lg:pt-10 pt-4 flex flex-col justify-center text-center gap-0 lg:gap-2 items-center w-full">
 			<Footer />
 		</div>
 

@@ -1,5 +1,5 @@
 <template>
-        <footer class="w-full flex flex-col gap-4 h-1/2 lg:h-full">
+        <footer class="w-full flex flex-col gap-2 lg:gap-4 h-full">
 			<div class="flex text-center flex-col">
 				<label class="text-gray-100 text-2xl font-semibold">What's next? Follow us for updates</label>
 				<label class="text-gray-300 text-md">Connect with us to stay up-to-date on what's new at cheqd network</label>

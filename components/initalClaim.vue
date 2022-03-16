@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full w-full py-4">
+	<div class="h-full w-full pt-4 lg:py-4">
 		<div class="w-full flex px-4 justify-center">
 			<form class="w-full lg:w-96" @submit.prevent action="submit">
 					<div class="text-center px-2">
@@ -22,11 +22,11 @@
 					</div>
 			</form>
 			<GenericModal :closeModal="toggleModal" :isOpen="isOpen">
-			<div class="h-full w-full bg-[#140e2d] p-4 border-1 rounded-2xl border-gray-100">
+			<div class="h-full w-full bg-[#140e2d] py-4 border-1 rounded-2xl border-gray-100">
 				<div class="flex flex-col justify-center items-center w-full h-full">
 					<div class="mt-4">
 						<label class="text-2xl text-gray-300 font-semibold">Airdrop - Calculate Rewards</label>
-						<p class="text-md py-4 text-gray-300">
+						<p class="text-sm font-light py-4 text-gray-300">
 							{{address}}
 						</p>
 
@@ -63,7 +63,7 @@
 
 					<div class="mt-4 px-4 flex w-full justify-center gap-4">
 						<button @click="toggleModal" 
-							class="inline-flex justify-center px-4 py-2 text-md font-medium text-orange-900 bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500 bg-opacity-20"
+							class="inline-flex justify-center px-4 py-2 text-md font-medium bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500 bg-opacity-20"
 						>
 							<XIcon class="w-6 h-6 fill-inherit text-gray-200" />
 							<span class="text-gray-200">
@@ -72,7 +72,7 @@
 						</button>
 						<button type="button"
 							@click="() => claimInitalRewards(address)"
-							class="inline-flex justify-center px-4 py-2 text-md font-medium text-orange-900 bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500"
+							class="inline-flex justify-center px-4 py-2 text-md font-medium bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500"
 	 >
 							<svg 
 								:class="claimInProgress ? 'animate-spin' : ''"
