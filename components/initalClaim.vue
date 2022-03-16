@@ -1,13 +1,13 @@
 <template>
 	<div class="h-full w-full py-4">
 		<div class="w-full flex px-4 justify-center">
-			<form class="w-96" @submit.prevent action="submit">
-					<div class="flex items-center px-2">
-						<label for={label} class="block text-md text-gray-800">{{label}}</label>
+			<form class="w-full lg:w-96" @submit.prevent action="submit">
+					<div class="text-center px-2">
+						<label for={label} class="block text-md text-gray-300">{{label}}</label>
 					</div>
 					<input 
-						class="block h-14 w-full px-4 py-2 text-gray-800 bg-white border rounded-md focus:border-orange-600 focus:outline-orange-300 focus:ring-orange-70 text-ellipsis"
-						placeholder="cosmos address"
+						class="block h-12 w-full px-4 py-2 text-gray-800 bg-white border rounded-md focus:border-purple-600 focus:outline-purple-300 focus:ring-purple-70 text-ellipsis"
+						placeholder="cheqd1..."
 						v-model="address"
 						@input="handleAddressInput"
    />
@@ -15,17 +15,10 @@
 					<div class="flex justify-center py-4">
 					<button
 						@click="calculateRewards"
-						class="cursor-pointer inline-flex justify-center w-2/5 x-2 py-3 text-lg max-w-md text-white bg-cheqd-purple-light rounded-md hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-						>
-						Claim
+						class="cursor-pointer inline-flex justify-center w-5/6 lg:w-2/5 x-2 py-3 text-lg max-w-md text-white bg-cheqd-dark-purple rounded-md hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+					>
+						Check Eligibility
 					</button>
-					<!-- <button -->
-					<!-- 	class="cursor-pointer inline-flex justify-center w-1/3 px-2 py-2 text-lg max-w-md font-medium -->
-					<!-- 	text-white bg-orange-400 rounded-md hover:bg-orange-500 focus:outline-none -->
-					<!-- 	focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75" -->
-					<!-- 	> -->
-					<!-- 	Claim -->
-					<!-- </button> -->
 					</div>
 			</form>
 			<GenericModal :closeModal="toggleModal" :isOpen="isOpen">
@@ -53,11 +46,11 @@
 								</label>
 								<label class="flex items-center gap-1 py-2 text-gray-300 text-lg font-semibold">
 									<XIcon class="text-red-600 h-6 w-6" />
-									Osmosis
+									Osmosis - 0 CHEQ
 								</label>
 								<label class="flex items-center gap-1 py-2 text-gray-300 text-lg font-semibold">
 									<CheckIcon class="text-green-600 h-6 w-6" />
-									Juno - 20 CHEQ
+									Juno - 60 CHEQ
 								</label>
 							</div>
 						</div>
@@ -145,7 +138,7 @@ export default {
 	}
 
 	const calculateRewards = () => {
-		toggleModal()
+		toggleModal();
 	}
 
 	const claimInitalRewards = async (addr) => {
@@ -158,7 +151,7 @@ export default {
 
 		claimInProgress.value = true
 		setTimeout(() => {
-			window.location.href = "/claim"
+			window.location.href = "/stage-2"
 		}, 5000)
 	}
 

@@ -4,7 +4,7 @@ import HttpClient from './httpClient';
 
 export type KeplrResponse = {
 	data?: any;
-	error?: Error | string;
+	error?: string;
 }
 
 export class Keplr extends HttpClient {
@@ -70,8 +70,7 @@ export class Keplr extends HttpClient {
 		try {
 			resp.data = bech32.decode(addr)
 		} catch (e) {
-			let error = e as Error
-			resp.error = error
+			resp.error = e
 		}
 
 		return this.response(resp);

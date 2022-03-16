@@ -1,15 +1,15 @@
 <template>
 	<client-only>
-	<div :class="minWindowHeight" class="h-full flex bg-img-dark flex-col">
+	<div :class="minWindowHeight" class="h-full flex bg-img-dark flex-row lg:flex-col">
 		<!-- sidebar + dynamic content -->
-		<div class="grid gap-2 grid-tmpl-col w-full h-full">
+		<div class="grid gap-2 grid-rows-1 grid-cols-12 w-full h-full">
 			<!-- Sidebar -->
-			<div class="h-full p-4 bg-purple-200 bg-opacity-20">
+			<div class="order-last col-span-12 lg:order-first lg:col-span-3 h-full p-4 bg-purple-200 bg-opacity-20">
 				<SideBarComponent />
 			</div>
 
 			<!-- Slot -->
-			<div class="w-full h-full p-4 bg-purple-200 bg-opacity-20">
+			<div class="col-span-12 flex items-center justify-center lg:col-span-9 w-full h-full p-4 bg-purple-200 bg-opacity-20">
 				<slot />
 			</div>
 
@@ -54,6 +54,10 @@ export default {
 </script>
 
 <style>
+	.grid-tmpl-col-xs {
+		grid-template-columns: 100%;
+		grid-auto-columns: minmax(100vh, auto);
+	}
 	.grid-tmpl-col {
 		grid-template-columns: 25% 75%;
 		grid-auto-columns: minmax(100vh, auto);
