@@ -1,12 +1,14 @@
 <template>
 	<client-only>
-	<div class="h-full min-h-[100vh] w-full flex flex-col justify-start items-center">
-		<div class="pt-2">
-			<img class="w-56 2xl:w-64" src="assets/images/cheqd-logo-wordmark-black.png" />
+	<div class="h-full min-h-[70vh] lg:min-h-screen w-full flex flex-col justify-start items-center">
+		<div class="hidden lg:block pt-2">
+			<a href="/">
+				<img class="w-56 2xl:w-64" src="assets/images/cheqd-logo-light.png" />
+			</a>
 		</div>
 
 		<!-- Button + Dropdown Menu -->
-		<div class="py-4">
+		<div class="hidden lg:block py-4">
 			<Menu :v-slot="{ open }" as="div" class="relative inline-block text-left">
 				<div  class="max-w-md">
 					<MenuButton @click="handleDropdownMenu"
@@ -60,33 +62,18 @@
 			<div
 				class="text-left divide-y divide-gray-500 cursor-pointer w-full py-2 mb-20 mx-auto">
 				<h2 class="text-2xl py-2 px-2 text-gray-200 text-left">FAQ</h2>
-				<p class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
+
+				<p @click="openLink(0)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
 					<BeakerIcon class="w-8 h-8"/>
 					What is Mission Two of the cheqd community airdrop?
 				</p>
-				<p class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
+				<p @click="openLink(1)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
 					<BeakerIcon class="w-8 h-8"/>
 					Am I eligible for the Mission 2, Stage 1? (staking ATOM, OSMO, JUNO)
 				</p>
-				<p class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
+				<p @click="openLink(2)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
 					<BeakerIcon class="w-8 h-8"/>
-					How do I stake my CHEQ tokens?
-				</p>
-				<p class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
-					<BeakerIcon class="w-8 h-8"/>
-					What are 'liquidity pools' and how do I get involved?
-				</p>
-				<p class="text-sm inline-flex break-words gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
-					<BeakerIcon class="w-8 h-8"/>
-					Does superfluid staking for OSMO/ATOM count towards Mission Two rewards?
-				</p>
-				<p class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
-					<BeakerIcon class="w-8 h-8"/>
-					Can I use Keplr wallet on mobile phones / mobile browsers?
-				</p>
-				<p class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
-					<BeakerIcon class="w-8 h-8"/>
-					Terms & Conditions of cheqd Community Rewards / Airdrops
+					Am I eligible for Mission 2, Stage 2? (staking and LPing CHEQ)
 				</p>
 			</div>
 		</div>
@@ -116,6 +103,23 @@ const keplr = new Keplr();
 let walletAddress = ref('');
 let open = ref(false);
 
+
+const openLink = (id: number) => {
+	switch (id) {
+		case 0: {
+			window.open( 'https://support.cheqd.io/support/solutions/articles/101000384269-what-is-mission-two-of-the-cheqd-community-airdrop')
+			break
+		}
+		case 1: {
+			window.open( 'https://support.cheqd.io/support/solutions/articles/101000384272-eligibility-criteria-for-atom-osmo-and-juno-stakers ')
+			break
+		}
+		case 2: {
+			window.open( 'https://support.cheqd.io/support/solutions/articles/101000384781-eligibility-criteria-for-cheq-staking-dex-liquidity-pools')
+			break
+		}
+	}
+}
 
 onBeforeMount(async () => {
 	const {error, data } = await keplr.getAddressFromLocalStorage()

@@ -1,9 +1,12 @@
 <template>
-        <footer class="w-full h-full">
-			<div class="flex gap-4 items-center justify-center px-6 py-8 h-full flex-col">
+        <footer class="w-full flex flex-col gap-2 lg:gap-4 h-full">
+			<div class="flex text-center flex-col">
+				<label class="text-gray-100 text-2xl font-semibold">What's next? Follow us for updates</label>
+				<label class="text-gray-300 text-md">Connect with us to stay up-to-date on what's new at cheqd network</label>
+			</div>
 
+			<div class="flex gap-2 items-center justify-center px-6 h-full flex-col">
 				<div class="flex">
-
 					<a href="#" class="mx-2 text-gray-800 " aria-label="Twitter">
 						<svg class="w-10 fill-current hover:text-cheqd-light-blue text-gray-200"
 							viewBox="0 0 333334 333334" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M166667 0c92048 0 166667 74619 166667 166667s-74619 166667-166667 166667S0 258715 0 166667 74619 0 166667 0zm80219 91205l-29735 149919s-4158 10396-15594 5404l-68410-53854s76104-68409 79222-71320c3119-2911 2079-3534 2079-3534 207-3535-5614 0-5614 0l-100846 64043-42002-14140s-6446-2288-7069-7277c-624-4992 7277-7694 7277-7694l166970-65498s13722-6030 13722 3951zm-87637 122889l-27141 24745s-2122 1609-4443 601l5197-45965 26387 20619z"/>
