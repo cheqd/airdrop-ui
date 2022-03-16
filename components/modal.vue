@@ -34,7 +34,7 @@
             >
 			<div class="-mx-5 z-0 -mt-8">
 				<picture>
-					<img class="-z-10 h-1/5" :src="bgImgPath" alt="mission-1" />
+					<img class="-z-10" :src="bgImgPath" alt="mission-1" />
 				</picture>
 			</div>
               <DialogTitle
@@ -46,7 +46,7 @@
 
 			  <div class="flex flex-col justify-center items-center w-full h-full">
               <div class="mt-4">
-                <p class="text-lg font-semibold text-gray-600">
+                <p class="text-md xl:text-lg xl:font-semibold text-gray-600">
 					{{detail}}
                 </p>
               </div>
