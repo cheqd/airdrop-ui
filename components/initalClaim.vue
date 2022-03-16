@@ -15,7 +15,7 @@
 					<div class="flex justify-center py-4">
 					<button
 						@click="calculateRewards"
-						class="cursor-pointer inline-flex justify-center w-1/3 x-2 py-2 text-lg max-w-md font-medium text-white bg-orange-400 rounded-md hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+						class="cursor-pointer inline-flex justify-center w-2/5 x-2 py-3 text-lg max-w-md text-white bg-cheqd-purple-light rounded-md hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
 						>
 						Claim
 					</button>
@@ -29,39 +29,40 @@
 					</div>
 			</form>
 			<GenericModal :closeModal="toggleModal" :isOpen="isOpen">
-			<div class="h-full w-full bg-orange-100 p-4">
+			<div class="h-full w-full bg-[#140e2d] p-4 border-1 rounded-2xl border-gray-100">
 				<div class="flex flex-col justify-center items-center w-full h-full">
 					<div class="mt-4">
-						<label class="text-2xl text-gray-700 font-semibold">Airdrop - Calculate Rewards</label>
-						<p class="text-md font-semibold py-4 text-gray-500">
+						<label class="text-2xl text-gray-300 font-semibold">Airdrop - Calculate Rewards</label>
+						<p class="text-md py-4 text-gray-300">
 							{{address}}
 						</p>
 
 						<div class="w-full flex justify-around items-center px-0 mx-0">
-							<div>
-								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
+							<div class="flex justify-center flex-col items-center text-center">
+								<label class="flex items-center text-gray-300 text-lg font-semibold">
+									Total Rewards
 								</label>
-								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
+								<label class="flex items-center text-gray-300 text-lg font-semibold">
 									100 CHEQ
 								</label>
 							</div>
 							<div class="flex items-start flex-col">
-								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
+								<label class="flex items-center gap-1 py-2 text-gray-300 text-lg font-semibold">
 									<CheckIcon class="text-green-600 h-6 w-6" />
 									Cosmos - 40 CHEQ
 								</label>
-								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
+								<label class="flex items-center gap-1 py-2 text-gray-300 text-lg font-semibold">
 									<XIcon class="text-red-600 h-6 w-6" />
 									Osmosis
 								</label>
-								<label class="flex items-center gap-1 py-2 text-gray-600 text-lg font-semibold">
+								<label class="flex items-center gap-1 py-2 text-gray-300 text-lg font-semibold">
 									<CheckIcon class="text-green-600 h-6 w-6" />
 									Juno - 20 CHEQ
 								</label>
 							</div>
 						</div>
 						<div class="py-4">
-							<span class="text-lg text-gray-600">
+							<span class="text-lg text-gray-300">
 								Congratulations!! You're eligible for the airdrop.
 							</span>
 						</div>
@@ -69,21 +70,21 @@
 
 					<div class="mt-4 px-4 flex w-full justify-center gap-4">
 						<button @click="toggleModal" 
-							class="inline-flex justify-center px-4 py-1 text-md font-medium text-orange-900 bg-orange-50 border-2 border-orange-900 rounded-md hover:bg-orange-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+							class="inline-flex justify-center px-4 py-2 text-md font-medium text-orange-900 bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500 bg-opacity-20"
 						>
-							<XIcon class="w-6 h-6" />
-							<span class="font-semibold">
+							<XIcon class="w-6 h-6 fill-inherit text-gray-200" />
+							<span class="text-gray-200">
 								Close
 							</span>
 						</button>
 						<button type="button"
 							@click="() => claimInitalRewards(address)"
-							class="inline-flex justify-center px-4 py-1 text-md font-medium border-orange-900 border-2 text-orange-900 bg-orange-50 rounded-md hover:bg-orange-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+							class="inline-flex justify-center px-4 py-2 text-md font-medium text-orange-900 bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500"
 	 >
 							<svg 
 								:class="claimInProgress ? 'animate-spin' : ''"
 								v-if="claimInProgress"
-								class="animate-spin -ml-1 mr-3 h-6 w-6 text-orange-900" 
+								class="animate-spin -ml-1 mr-3 h-6 w-6 text-gray-200" 
 								xmlns="http://www.w3.org/2000/svg" 
 								fill="none" 
 								viewBox="0 0 24 24"
@@ -92,8 +93,8 @@
 									<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
 									</path>
 							</svg>
-							<BeakerIcon v-if="!claimInProgress" class="w-6 h-6" />
-							<span class="font-semibold">
+							<BeakerIcon v-if="!claimInProgress" class="w-6 h-6 fill-inherit text-gray-200" />
+							<span class="text-gray-200">
 								Claim
 							</span>
 						</button>

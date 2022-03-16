@@ -1,7 +1,9 @@
 <template>
-	<div class="h-full w-full min-h-screen overflow-y-hidden overflow-x-hidden">
+	<client-only>
+	<div class="h-full min-h-[100vh] w-full flex flex-col justify-start items-center 2xl:justify-center">
 		<Hero />
 	</div>
+	</client-only>
 </template>
 
 <script setup lang="ts">

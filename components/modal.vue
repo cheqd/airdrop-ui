@@ -30,7 +30,7 @@
             leave-to="opacity-0 scale-95"
           >
             <div
-              class="inline-block relative p-5 bg-white w-1/2 text-center container max-w-2xl overflow-hidden align-middle transition-all transform shadow-xl rounded-2xl"
+              class="inline-block relative p-5 bg-white w-1/2 text-center container max-w-5xl overflow-hidden align-middle transition-all transform shadow-xl rounded-2xl"
             >
 			<div class="-mx-5 z-0 -mt-8">
 				<picture>
@@ -54,7 +54,7 @@
               <div class="mt-4 px-4 flex w-full justify-end gap-4">
                 <button
                   type="button"
-                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-orange-900 bg-red-200 border border-transparent rounded-md hover:bg-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  class="inline-flex justify-center px-4 py-1 text-md font-medium text-orange-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                   @click="closeModal"
                 >
 					Close

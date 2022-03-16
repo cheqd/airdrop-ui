@@ -26,7 +26,7 @@
 						leave-to="opacity-0 scale-95"
 					>
 				<div
-					class="inline-block relative bg-white w-1/2 text-center container max-w-6xl overflow-hidden align-middle transition-all transform shadow-xl rounded-2xl"
+					class="inline-block relative w-1/2 text-center container max-w-6xl overflow-hidden align-middle transition-all transform shadow-xl rounded-2xl"
 				>
 				<slot />
 			  </div>
