@@ -31,7 +31,7 @@
 				  <label class="hidden lg:block px-4 font-semibold text-gray-100 2xl:text-xl">Or</label>
 				  <button :class="!showClaimForm ? 'mb-10' : ''" @click="toggleCheqdAddr"
 					  class="rounded-lg w-5/6 bg-cheqd-dark-purple gap-2 hover:bg-opacity-60 max-w-md h-16 px-4 inline-flex justify-center items-center 2xl:h-20 2xl:w-3/5">
-					  <img class="w-8 h-8" src="https://github.com/cheqd/airdrop-ui/raw/main/assets/images/cheqd-icon-logo.png" alt="">
+					  <img class="w-8 h-8" src="https://aryteric.sirv.com/Images/cheqd-logo-light.png" alt="">
 					  <span class="font-semibold text-gray-100 2xl:text-xl">
 						  Continue with your wallet address
 					  </span>

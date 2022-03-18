@@ -5,7 +5,7 @@
 		<div class="2xl:h-20" />
 		<div class="cursor-pointer w-full flex justify-center lg:hidden">
 			<a href="/">
-			<img class="p-0 m-0 w-40 2xl:w-64" src="https://github.com/cheqd/airdrop-ui/raw/main/assets/images/cheqd-logo-light.png" />
+			<img class="p-0 m-0 w-40 2xl:w-64" src="https://aryteric.sirv.com/Images/cheqd-icon-logo.png" />
 			</a>
 		</div>
 		<div class="h-full w-full flex justify-center relative items-center">
