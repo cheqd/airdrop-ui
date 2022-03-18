@@ -82,13 +82,13 @@
 	</client-only>
 </template>
 
-<script lang="ts">
+<script lang="ts" type="module">
 export default {
 	name: "SideBarComponent",
 }
 </script>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { BeakerIcon } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'

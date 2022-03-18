@@ -1,6 +1,9 @@
 import { defineNuxtConfig } from 'nuxt3'
 
 export default defineNuxtConfig({
+	routes: {
+		'/*': { prerender: true },
+	},
 	build: {
 		postcss: {
 			postcssOptions: {
@@ -14,4 +17,7 @@ export default defineNuxtConfig({
 	css: [
 		"~/assets/css/main.css"
 	],
+	nitro: {
+		preset: 'cloudflare'
+	}
 })

@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 	import {defineProps} from 'vue';
 
 	const label = "Airdrop Checker"

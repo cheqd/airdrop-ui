@@ -50,7 +50,7 @@
 </template>
 
 
-<script lang="ts">
+<script lang="ts" type="module">
 import DefaultLayout from '../layouts/default.vue';
 import InitialClaim from './initalClaim.vue';
 
@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 	import {onBeforeMount, ref} from 'vue';
 
 	import {Keplr} from '../server/api/keplr';

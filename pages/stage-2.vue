@@ -6,7 +6,7 @@
 	</client-only>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 // @ts-ignore
 import Hero from '../components/hero.vue';
 </script>

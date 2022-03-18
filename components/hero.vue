@@ -48,7 +48,7 @@
 	</client-only>
 </template>
 
-<script lang="ts">
+<script lang="ts" type="module">
 
 import {ref, } from 'vue';
 // @ts-ignore
