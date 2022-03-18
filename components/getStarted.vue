@@ -29,7 +29,7 @@
 				  </button>
 				  <label class="px-4 font-semibold text-gray-100">Or</label>
 				  <button :class="!showClaimForm ? 'mb-10' : ''" @click="toggleCheqdAddr" class="rounded-lg w-96 gap-2 bg-gray-600 border-cheqd-dark-purple hover:bg-gray-800 border-2 border-solid max-w-md py-3 px-4 inline-flex justify-center items-center">
-					  <img class="w-8 h-8" src="assets/images/cheqd-icon-logo.png" alt="">
+					  <img class="w-8 h-8" src="https://github.com/cheqd/airdrop-ui/raw/main/assets/images/cheqd-icon-logo.png" alt="">
 					  <span class="font-semibold text-gray-100">
 						  Continue with your CHEQ Address
 					  </span>
