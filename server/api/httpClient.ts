@@ -14,7 +14,6 @@ abstract class HttpClient {
 		this.http = axios.create({
 			baseURL,
 			headers,
-			withCredentials: true,
 		});
 		this._responseInterceptor();
 		this._requestInterceptor();
@@ -22,7 +21,6 @@ abstract class HttpClient {
 
 	private _requestInterceptor = () => {
 		this.http.interceptors.request.use(req => {
-			req.withCredentials = true;
 			return req;
 		})
 	}
@@ -34,11 +32,21 @@ abstract class HttpClient {
 		);
 	}
 
-	private _handleResponse = ({ data, status, headers }: AxiosResponse) => ({
-		data: data, 
-		status: status, 
-		headers: headers
-	});
+	private _handleResponse = ({ data, status, headers }: AxiosResponse) => {
+		if (!data.valid) {
+			return {
+				error: data.message,
+				valid: data.valid,
+			}
+		}
+
+		return {
+			data: data, 
+			status: status, 
+			headers: headers,
+			valid: data.valid,
+		}
+	};
 
 	protected _handleError = (err: AxiosError) => ({
 		error: err?.response,

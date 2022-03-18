@@ -8,53 +8,53 @@
 		</div>
 
 		<!-- Button + Dropdown Menu -->
-		<div class="hidden lg:block py-4">
-			<Menu :v-slot="{ open }" as="div" class="relative inline-block text-left">
-				<div  class="max-w-md">
-					<MenuButton @click="handleDropdownMenu"
-						class="cursor-pointer inline-flex justify-center px-4 w-64 2xl:w-80 2xl:py-6 py-4 text-sm font-medium text-white bg-cheqd-dark-purple rounded-lg hover:bg-opacity-60 :outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-						<label class="cursor-pointer 2xl:text-lg" v-show="!walletAddress">Connect Keplr Wallet</label>
-						<label class="cursor-pointer truncate max-w-[15rem]" :v-show="walletAddress">{{walletAddress}}</label>
-						<ChevronDownIcon v-show="walletAddress" class="w-8 2xl:w-6 ml-2 -mr-1 text-gray-100 hover:text-violet-100" aria-hidden="true" />
-					</MenuButton>
-				</div>
-				<transition
-					enter-active-class="transition duration-100 ease-out"
-					enter-from-class="transform scale-95 opacity-0"
-					enter-to-class="transform scale-100 opacity-100"
-					leave-active-class="transition duration-75 ease-in"
-					leave-from-class="transform scale-100 opacity-100"
-					leave-to-class="transform scale-95 opacity-0"
-				>
-					<div v-show="open">
-						<MenuItems static
-							class="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-						>
-							<div class="px-1 py-1 bg-gray-100">
-								<MenuItem v-slot="{ active }">
-									<button @click="copyAddrToClipboard"
-										:class="[
-										active ? 'bg-blue-200 text-black' : 'text-gray-700',
-										'group flex rounded-md items-center w-full px-2 py-2 text-sm',
-										]"
-									>
-										Copy Address
-									</button>
-								</MenuItem>
-								<MenuItem v-slot="{ active }">
-									<button @click="disconnectKeplr"
-										:class="[ active ? 'bg-blue-200 text-black' : 'text-gray-700',
-										'group flex rounded-md items-center w-full px-2 py-2 text-sm', ]"
-									>
-										Disconnect
-									</button>
-								</MenuItem>
-							</div>
-						</MenuItems>
-					</div>
-				</transition>
-			</Menu>
-		</div>
+		<!-- <div class="hidden lg:block py-4"> -->
+		<!-- 	<Menu :v-slot="{ open }" as="div" class="relative inline-block text-left"> -->
+		<!-- 		<div  class="max-w-md"> -->
+		<!-- 			<MenuButton @click="handleDropdownMenu" -->
+		<!-- 				class="cursor-pointer inline-flex justify-center px-4 w-64 2xl:w-80 2xl:py-6 py-4 text-sm font-medium text-white bg-cheqd-dark-purple rounded-lg hover:bg-opacity-60 :outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"> -->
+		<!-- 				<label class="cursor-pointer 2xl:text-lg" v-show="!walletAddress">Connect Keplr Wallet</label> -->
+		<!-- 				<label class="cursor-pointer truncate max-w-[15rem]" :v-show="walletAddress">{{walletAddress}}</label> -->
+		<!-- 				<ChevronDownIcon v-show="walletAddress" class="w-8 2xl:w-6 ml-2 -mr-1 text-gray-100 hover:text-violet-100" aria-hidden="true" /> -->
+		<!-- 			</MenuButton> -->
+		<!-- 		</div> -->
+		<!-- 		<transition -->
+		<!-- 			enter-active-class="transition duration-100 ease-out" -->
+		<!-- 			enter-from-class="transform scale-95 opacity-0" -->
+		<!-- 			enter-to-class="transform scale-100 opacity-100" -->
+		<!-- 			leave-active-class="transition duration-75 ease-in" -->
+		<!-- 			leave-from-class="transform scale-100 opacity-100" -->
+		<!-- 			leave-to-class="transform scale-95 opacity-0" -->
+		<!-- 		> -->
+		<!-- 			<div v-show="open"> -->
+		<!-- 				<MenuItems static -->
+		<!-- 					class="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" -->
+		<!-- 				> -->
+		<!-- 					<div class="px-1 py-1 bg-gray-100"> -->
+		<!-- 						<MenuItem v-slot="{ active }"> -->
+		<!-- 							<button @click="copyAddrToClipboard" -->
+		<!-- 								:class="[ -->
+		<!-- 								active ? 'bg-blue-200 text-black' : 'text-gray-700', -->
+		<!-- 								'group flex rounded-md items-center w-full px-2 py-2 text-sm', -->
+		<!-- 								]" -->
+		<!-- 							> -->
+		<!-- 								Copy Address -->
+		<!-- 							</button> -->
+		<!-- 						</MenuItem> -->
+		<!-- 						<MenuItem v-slot="{ active }"> -->
+		<!-- 							<button @click="disconnectKeplr" -->
+		<!-- 								:class="[ active ? 'bg-blue-200 text-black' : 'text-gray-700', -->
+		<!-- 								'group flex rounded-md items-center w-full px-2 py-2 text-sm', ]" -->
+		<!-- 							> -->
+		<!-- 								Disconnect -->
+		<!-- 							</button> -->
+		<!-- 						</MenuItem> -->
+		<!-- 					</div> -->
+		<!-- 				</MenuItems> -->
+		<!-- 			</div> -->
+		<!-- 		</transition> -->
+		<!-- 	</Menu> -->
+		<!-- </div> -->
 		<!-- Button + Dropdown Menu End -->
 
 		<div>

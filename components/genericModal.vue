@@ -38,21 +38,28 @@
   </client-only>
 </template>
 
+<script>
+	export default {
+		name: "GenericModal",
+	}
+</script>
+
 <script setup>
-import { defineProps } from 'vue'
-import {
-	TransitionRoot,
-	TransitionChild,
-	Dialog,
-	DialogOverlay,
-	DialogTitle,
-} from '@headlessui/vue'
+	import { defineProps } from 'vue'
 
-const props = defineProps({
-	title: String,
-	isOpen: Boolean,
-	closeModal: Function,
-})
+	// @ts-ignore
+	import {
+		TransitionRoot,
+		TransitionChild,
+		Dialog,
+		DialogOverlay,
+		DialogTitle,
+	} from '@headlessui/vue'
 
+	defineProps({
+		title: String,
+		isOpen: Boolean,
+		closeModal: Function,
+	})
 </script>
 

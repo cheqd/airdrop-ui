@@ -9,17 +9,12 @@
 			</div>
 
 			<!-- Slot -->
-			<div class="col-span-12 flex items-center justify-center lg:col-span-9 w-full h-full p-4 bg-purple-200 bg-opacity-20">
+			<div class="col-span-12 lg:col-span-9 flex items-center justify-center w-full h-full p-4 bg-purple-200 bg-opacity-20">
 				<slot />
 			</div>
 
 		</div>
 
-
-		<!-- footer -->
-		<!-- <div class="min-h-[8vh] h-[8vh]"> -->
-		<!-- 	<Footer /> -->
-		<!-- </div> -->
 	</div>
 	</client-only>
 </template>

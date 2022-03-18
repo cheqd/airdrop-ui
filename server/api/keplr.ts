@@ -8,8 +8,6 @@ export type KeplrResponse = {
 }
 
 export class Keplr extends HttpClient {
-	protected readonly keplr:KeplrIface;
-
     public constructor() {
         super('cheqd-mainnet-1', 'http://localhost:5000/auth')
     }
@@ -22,6 +20,30 @@ export class Keplr extends HttpClient {
 		return Promise.resolve(resp)
 	}
 
+	public connect = async () => {
+		let resp: KeplrResponse = {}
+
+		// @ts-ignore: Keplr Check is valid here
+		if (!window?.keplr) {
+			resp.error = "Please Install Keplr Extension"
+			return this.response(resp);
+		}
+
+		// @ts-ignore: Keplr Check is valid here
+		await window.keplr.experimentalSuggestChain(this.cheqdChainInfo)
+		const {data, error} = await this.getCheqAddress()
+		if (error) {
+			resp.error = error;
+			return this.response(resp)
+		}
+
+		// @ts-ignore
+		await window.keplr.enable(['cosmoshub-4', 'juno-1', 'osmosis-1'])
+
+		resp.data = data;
+		return this.response(resp);
+	}
+
 	public keplrSuggestChain = async () => {
 		let resp: KeplrResponse = {}
 
@@ -32,14 +54,13 @@ export class Keplr extends HttpClient {
 		}
 
 		// @ts-ignore: Keplr Check is valid here
-		await keplr.experimentalSuggestChain(this.cheqdChainInfo)
+		await window.keplr.experimentalSuggestChain(this.cheqdChainInfo)
 		const {data, error} = await this.getCheqAddress()
 		if (error) {
 			resp.error = error;
 			return this.response(resp)
 		}
 
-		this.storeAddressLocally(data)
 		resp.data = data;
 		return this.response(resp);
 	}
@@ -67,13 +88,17 @@ export class Keplr extends HttpClient {
 
 	public validateCosmosNetowrkAddress = (addr: string) => {
 		let resp: KeplrResponse = {}
+
 		try {
+			// resp.data = cosmosEnc.fromBech32(addr)
 			resp.data = bech32.decode(addr)
 		} catch (e) {
-			resp.error = e
+			e = e as TypeError
+			resp.error = e.message
 		}
 
-		return this.response(resp);
+		const promise = this.response(resp);
+		return promise
 	}
 
 	public storeAddressLocally = async (address: string) => {
