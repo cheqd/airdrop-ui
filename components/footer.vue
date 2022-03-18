@@ -40,7 +40,6 @@
 						cheqd - The network for authentic data | <a class="hover:text-gray-50 underline" target="_blank" href="https://www.cheqd.io/privacy-policy?hsLang=en">Privacy policy</a>
 					</span>
 				</div>
-
 			</div>
         </footer>
 </template>

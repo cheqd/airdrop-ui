@@ -16,7 +16,7 @@
 	</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 	import {ref, defineProps} from 'vue';
 
 	let showModal = ref(false);

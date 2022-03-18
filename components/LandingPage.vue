@@ -95,7 +95,8 @@
   </client-only>
 </template>
 
-<script lang="ts">
+
+<script lang="ts" type="module">
 import DefaultLayout from '../layouts/default.vue';
 import CalculateModal from './calculateModal.vue';
 import StatusModal from './statusModal.vue';
@@ -111,7 +112,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 	import {onBeforeMount, ref} from 'vue';
 
 	import {Keplr} from '../server/api/keplr';

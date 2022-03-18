@@ -3,7 +3,7 @@
 	<div class="h-full min-h-[70vh] lg:min-h-screen w-full flex flex-col justify-start items-center">
 		<div class="hidden lg:block pt-2">
 			<a href="/">
-				<img class="w-56 2xl:w-64" src="assets/images/cheqd-logo-light.png" />
+				<img class="w-56 2xl:w-64" src="https://aryteric.sirv.com/Images/cheqd-logo-light.png" />
 			</a>
 		</div>
 
@@ -82,13 +82,13 @@
 	</client-only>
 </template>
 
-<script lang="ts">
+<script lang="ts" type="module">
 export default {
 	name: "SideBarComponent",
 }
 </script>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { BeakerIcon } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'

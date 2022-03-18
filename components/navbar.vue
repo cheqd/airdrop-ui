@@ -63,7 +63,7 @@
 	</header>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" type="module">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
 import {ref, onBeforeMount} from 'vue';
