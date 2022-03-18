@@ -3,7 +3,7 @@
 	<div class="h-full min-h-[70vh] lg:min-h-screen w-full flex flex-col justify-start items-center">
 		<div class="hidden lg:block pt-2">
 			<a href="/">
-				<img class="w-56 2xl:w-64" src="https://aryteric.sirv.com/Images/cheqd-icon-logo.png" />
+				<img class="w-56 2xl:w-64" src="https://aryteric.sirv.com/Images/cheqd-logo-light.png" />
 			</a>
 		</div>
 
