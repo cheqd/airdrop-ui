@@ -97,9 +97,6 @@ export default {
 			address.value = data;
 			return
 		}
-
-		console.error('onBeforeMount - getStarted: ', error)
-
 	})
 
 	const handleWalletConnect = async () => {
@@ -118,7 +115,6 @@ export default {
 			}
 
 			address.value = data;
-			console.log('addrss: ', data)
 			initalClaimDone.value = false;
 			showClaimForm.value = true
 			return

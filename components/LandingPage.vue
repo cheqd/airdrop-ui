@@ -151,15 +151,11 @@ export default {
 	onBeforeMount(async () => {
 		minWindowHeight.value = `min-h-[${window.screen.availHeight}px]`;
 		minWindowHeightPx.value = `min-h-[${Math.ceil(window.screen.availHeight*0.3)}px]`;
-		console.log('minWindowHeight: ', minWindowHeightPx.value)
 		const { data, error } = await keplr.getAddressFromLocalStorage();
 		if (data) {
 			address.value = data;
 			return
 		}
-
-		console.error('onBeforeMount - getStarted: ', error)
-
 	})
 
 	const handleWalletConnect = async () => {

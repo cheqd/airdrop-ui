@@ -44,7 +44,6 @@ export default {
 	let minWindowHeight = ref('1000px')
 	onBeforeMount(()=> {
 		minWindowHeight.value = `min-h-[${window.screen.availHeight}px]`;
-		console.log('minWindowHeight: ', minWindowHeight.value)
 	})
 </script>
 

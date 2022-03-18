@@ -62,7 +62,6 @@ let isCalculateLoading = false;
 let isClaimLoading = false;
 
 const gotoHome = () => {
-	console.log('lskjflksd')
 	window.location.href="/"
 }
 
