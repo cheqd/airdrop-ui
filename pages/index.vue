@@ -2,9 +2,14 @@
 	<LandingPage />
 </template>
 
-<script setup lang="ts" type="module">
-	// @ts-ignore
+<script lang="ts" type="module">
 	import LandingPage from '../components/LandingPage.vue';
+
+	export default {
+		components: {
+			LandingPage,
+		}
+	}
 
 </script>
 
