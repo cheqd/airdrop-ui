@@ -43,7 +43,7 @@
                 </div>
                 <input 
                   class="block h-12 w-full px-4 py-2 text-gray-800 bg-white border rounded-md focus:border-purple-600 focus:outline-purple-300 focus:ring-purple-70 text-ellipsis"
-                  placeholder="cheqd1... or cosmos1.. or juno1 or osmo1..."
+                  placeholder="cheqd1... or cosmos1... or juno1... or osmo1..."
                   v-model="address"
                   name="address"
                   @input="validateAddress"
@@ -51,7 +51,7 @@
                 <span v-if="!!calculateState.formError" class="capitalize font-semibold text-red-400"> {{calculateState.formError}} </span>
                 <div class="flex justify-center py-4">
                   <button
-                    :disabled="!!calculateState.formError"
+                    :disabled="!!calculateState.formError || address == ''"
                     @click="calculateRewards(address)"
                     class="disabled:opacity-100 disabled:cursor-not-allowed cursor-pointer inline-flex items-center justify-center w-5/6 lg:w-3/5 x-2 py-3 text-lg max-w-md text-white bg-cheqd-dark-purple rounded-md hover:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
@@ -74,19 +74,19 @@
             </div>
           </div>
         </div>
-		<CalculateModal 
-		  :toggleModal="toggleCalculateModal"
-		  :isOpen="calculateState.isModalOpen"
-		  :address="address"
-		  :calculatedRewards="calculateState.rewards" 
-		/>
-	<StatusModal
-		:isOpen="calculateState.isStatusModalOpen"
-		:address="address"
-		:message="calculateState.message"
-		:toggleModal="toggleStatusModal"
-		:success="calculateState.success"
-	/>
+        <CalculateModal 
+          :toggleModal="toggleCalculateModal"
+          :isOpen="calculateState.isModalOpen"
+          :address="address"
+          :calculatedRewards="calculateState.rewards" 
+          />
+        <StatusModal
+          :isOpen="calculateState.isStatusModalOpen"
+          :address="address"
+          :message="calculateState.message"
+          :toggleModal="toggleStatusModal"
+          :success="calculateState.success"
+          />
       </div>
       <div class="lg:pt-10 pt-4 flex flex-col justify-center text-center gap-0 lg:gap-2 items-center w-full">
         <Footer />
@@ -94,7 +94,6 @@
     </div>
   </client-only>
 </template>
-
 
 <script lang="ts" type="module">
 import DefaultLayout from '../layouts/default.vue';
@@ -113,137 +112,138 @@ export default {
 </script>
 
 <script setup lang="ts" type="module">
-	import {onBeforeMount, ref} from 'vue';
+import {onBeforeMount, ref} from 'vue';
 
-	import {Keplr} from '../server/api/keplr';
-	import {CheqdRest} from '../server/api/cheqd';
-	const keplr = new Keplr();
-	const cheqdRest = new CheqdRest();
-	
-	let minWindowHeight = ref('')
-	let minWindowHeightPx = ref('min-h-[300px]')
+import {Keplr} from '../server/api/keplr';
+import {CheqdRest} from '../server/api/cheqd';
+const keplr = new Keplr();
+const cheqdRest = new CheqdRest();
 
-	import { useToast } from "vue-toastification";
-    const toast = useToast();
-	const showToast = (msg: string, options?:any) => toast(msg, options);
-	let initalClaimDone = ref(true);
-	let showClaimForm = ref(false);
-	let address = ref('');
+let minWindowHeight = ref('')
+let minWindowHeightPx = ref('min-h-[300px]')
 
-	const toggleCheqdAddr = async () => {
-		const claimed = await cheqdRest.getInitalClaimInfo();
-		if (!claimed) {
-			initalClaimDone.value = false;
-		}
-		showClaimForm.value = !showClaimForm.value
+import { useToast } from "vue-toastification";
+const toast = useToast();
+const showToast = (msg: string, options?:any) => toast(msg, options);
+let initalClaimDone = ref(true);
+let showClaimForm = ref(false);
+let address = ref('');
+
+const toggleCheqdAddr = async () => {
+	const claimed = await cheqdRest.getInitalClaimInfo();
+	if (!claimed) {
+		initalClaimDone.value = false;
+	}
+	showClaimForm.value = !showClaimForm.value
+}
+
+const getWalletAddress = async () => {
+	const {data, error } = await keplr.getCheqAddress()
+	if (data) {
+		return data;
 	}
 
-	const getWalletAddress = async () => {
+	throw error;
+
+}
+
+onBeforeMount(async () => {
+	minWindowHeight.value = `min-h-[${window.screen.availHeight}px]`;
+	minWindowHeightPx.value = `min-h-[${Math.ceil(window.screen.availHeight*0.3)}px]`;
+	const { data, error } = await keplr.getAddressFromLocalStorage();
+	if (data) {
+		address.value = data;
+		return
+	}
+})
+
+const handleWalletConnect = async () => {
+	const { error } = await keplr.connect()
+	if (error) {
+		showToast(error, { type: "error" })
+		return
+	}
+
+	const claimed = await cheqdRest.getInitalClaimInfo();
+	if (!claimed) {
 		const {data, error } = await keplr.getCheqAddress()
-		if (data) {
-			return data;
-		}
-
-		throw error;
-
-	}
-
-	onBeforeMount(async () => {
-		minWindowHeight.value = `min-h-[${window.screen.availHeight}px]`;
-		minWindowHeightPx.value = `min-h-[${Math.ceil(window.screen.availHeight*0.3)}px]`;
-		const { data, error } = await keplr.getAddressFromLocalStorage();
-		if (data) {
-			address.value = data;
-			return
-		}
-	})
-
-	const handleWalletConnect = async () => {
-		const { error } = await keplr.connect()
 		if (error) {
-			showToast(error, { type: "error" })
+			showToast(error, {type: "error"})
 			return
 		}
 
-		const claimed = await cheqdRest.getInitalClaimInfo();
-		if (!claimed) {
-			const {data, error } = await keplr.getCheqAddress()
-			if (error) {
-				showToast(error, {type: "error"})
-				return
-			}
-
-			calculateState.formError = ''
-			address.value = data;
-			initalClaimDone.value = false;
-			showClaimForm.value = true
-			return
-		}
-
-		window.location.href="/stage-2"
+		calculateState.formError = ''
+		address.value = data;
+		initalClaimDone.value = false;
+		showClaimForm.value = true
+		return
 	}
 
-	const toggleCalculateModal = () => {
-		calculateState.isModalOpen = !calculateState.isModalOpen
+	window.location.href="/stage-2"
+}
+
+const toggleCalculateModal = () => {
+	calculateState.isModalOpen = !calculateState.isModalOpen
+}
+
+const toggleStatusModal = () => {
+	calculateState.isStatusModalOpen = !calculateState.isStatusModalOpen
+}
+
+const calculateState = reactive({
+	isModalOpen: false,
+	inProgress: false,
+	success: false,
+	isStatusModalOpen: false,
+	formError: '',
+	message: '',
+	rewards: {},
+})
+
+const calculateRewards = async (addr: string) => {
+	if (calculateState.formError) {
+		calculateState.isModalOpen = false
+		return
 	}
 
-	const toggleStatusModal = () => {
-		calculateState.isStatusModalOpen = !calculateState.isStatusModalOpen
-	}
-
-		const calculateState = reactive({
-			isModalOpen: false,
-			inProgress: false,
-			success: false,
-			isStatusModalOpen: false,
-			formError: '',
-			message: '',
-			rewards: {},
-		})
-	const calculateRewards = async (addr: string) => {
-		if (calculateState.formError) {
-			calculateState.isModalOpen = false
-			return
-		}
-
-		calculateState.inProgress = true;
-		const {error, valid, data } = await cheqdRest.checkAirdropEligibility(addr)
-		if (!valid) {
-			calculateState.message = "You are not eligible to receive a reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of our airdrop terms & conditions."
-			calculateState.inProgress = false
-			calculateState.success = false
-			calculateState.isStatusModalOpen = true
-			return
-		}
-
-		if (error) {
-			calculateState.message = error;
-			calculateState.isStatusModalOpen = true
-			calculateState.success = false;
-			calculateState.inProgress = false;
-			return
-		}
-
-		calculateState.rewards = data
+	calculateState.inProgress = true;
+	const {error, valid, data } = await cheqdRest.checkAirdropEligibility(addr)
+	if (!valid) {
+		calculateState.message = "You are not eligible to receive a reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of our airdrop terms & conditions."
 		calculateState.inProgress = false
-
-		toggleCalculateModal();
+		calculateState.success = false
+		calculateState.isStatusModalOpen = true
+		return
 	}
 
-	const validateAddress = async (e: any) => {
-		if ( e.target.value === '' ) {
-			calculateState.formError =  ''
-			return
-		}
-
-		try {
-			const { data } = await keplr.validateCosmosNetowrkAddress(e.target.value);
-			address.value = e.target.value;
-			calculateState.formError = '';
-		} catch (err) {
-			calculateState.formError = 'invalid address'
-		}
+	if (error) {
+		calculateState.message = error;
+		calculateState.isStatusModalOpen = true
+		calculateState.success = false;
+		calculateState.inProgress = false;
+		return
 	}
+
+	calculateState.rewards = data
+	calculateState.inProgress = false
+
+	toggleCalculateModal();
+}
+
+const validateAddress = async (e: any) => {
+	if ( e.target.value === '' ) {
+		calculateState.formError =  ''
+		return
+	}
+
+	try {
+		const { data } = await keplr.validateCosmosNetowrkAddress(e.target.value);
+		address.value = e.target.value;
+		calculateState.formError = '';
+	} catch (err) {
+		calculateState.formError = 'invalid address'
+	}
+}
 
 </script>
 
