@@ -10,7 +10,7 @@
 		<div>
 		<div class="w-full h-full pt-8">
 			<div
-				class="text-left divide-y divide-gray-500 cursor-pointer w-full py-2 mb-20 mx-auto">
+				class="text-left divide-y divide-gray-500 cursor-pointer w-full py-2 mx-auto">
 				<h2 class="text-2xl py-2 px-2 text-gray-200 text-left">FAQ</h2>
 
 				<p @click="openLink(0)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
@@ -25,6 +25,16 @@
 					<BeakerIcon class="w-8 h-8"/>
 					Am I eligible for Mission 2, Stage 2? (staking and LPing CHEQ)
 				</p>
+			</div>
+			<div class="flex justify-center items-center">
+				<a 
+					href="https://support.cheqd.io/support/home"
+					target="_blank"
+					class="px-4 bg-cheqd-dark-purple cursor-pointer hover:bg-opacity-60 py-2 rounded-md text-lg
+						text-gray-200 border border-gray-400"
+				>
+				Learn More
+				</a>
 			</div>
 		</div>
 		</div>
@@ -41,7 +51,7 @@ export default {
 	components: {
 		Menu,
 		MenuButton,
-		MenuItems,
+		MenuItem,
 		MenuItems,
 		BeakerIcon,
 		ChevronDownIcon,
