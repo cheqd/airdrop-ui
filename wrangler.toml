@@ -1,10 +1,10 @@
 name = "airdrop-ui"
 type = "javascript"
 
-account_id = "***REMOVED***"
+account_id = ""
 workers_dev = true
 route = ""
-zone_id = "***REMOVED***"
+zone_id = ""
 compatibility_date = "2022-03-16"
 
 [site]
