@@ -9,7 +9,7 @@ export type KeplrResponse = {
 
 export class Keplr extends HttpClient {
     public constructor() {
-        super('cheqd-mainnet-1', 'http://localhost:5000/auth')
+        super('cheqd-mainnet-1', '')
     }
 
 	private response = (resp: KeplrResponse): Promise<KeplrResponse> => {
@@ -25,7 +25,7 @@ export class Keplr extends HttpClient {
 
 		// @ts-ignore: Keplr Check is valid here
 		if (!window?.keplr) {
-			resp.error = "Please Install Keplr Extension"
+			resp.error = "Please install Keplr Extension"
 			return this.response(resp);
 		}
 
@@ -49,7 +49,7 @@ export class Keplr extends HttpClient {
 
 		// @ts-ignore: Keplr Check is valid here
 		if (!window?.keplr) {
-			resp.error = "Please Install Keplr Extension"
+			resp.error = "Please install Keplr Extension"
 			return this.response(resp);
 		}
 
@@ -105,7 +105,7 @@ export class Keplr extends HttpClient {
 		let resp: KeplrResponse = {}
 
 		if (!address) {
-			resp.error = "address can not be empty"
+			resp.error = "Address can not be empty"
 			return this.response(resp)
 		}
 

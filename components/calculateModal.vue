@@ -153,7 +153,9 @@
 
 	const claimRewards = async (addr: string) => {
 		claimState.inProgress = true
-		const { error, valid, data } = await cr.claimRewards(addr)
+		// error handling is done on server side
+		// if there's an error in this api call, user will be taken to an error page
+		const { valid, data } = await cr.claimRewards(addr)
 		if (!valid) {
 			claimState.message = data.message
 			claimState.success = false;
@@ -167,14 +169,6 @@
 			claimState.inProgress = false;
 			props.toggleModal()
 			claimState.isModalOpen = true;
-			return
-		}
-
-
-		if (error) {
-			claimState.message = error
-			claimState.success = false;
-			claimState.inProgress = false;
 			return
 		}
 

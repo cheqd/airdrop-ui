@@ -1,17 +1,22 @@
 <template>
 	<div class="bg-img-dark">
 		<div class="w-9/12 m-auto py-16 min-h-screen flex items-center justify-center">
-			<div class="bg-purple-200 bg-opacity-20 backdrop-blur-sm shadow overflow-hidden sm:rounded-lg pb-8">
+			<div class="px-4 lg:px-8 bg-purple-200 bg-opacity-20 backdrop-blur-sm shadow overflow-hidden sm:rounded-lg pb-8">
 				<div class="text-center pt-8">
-					<h1 v-if="error.statusCode == 404" class="text-9xl  font-bold text-purple-400">404</h1>
-					<h1 v-else>An error occurred - {{ error.statusCode }} </h1>
-					<h1  class="text-6xl text-gray-200 font-medium py-8">{{error.message}}</h1>
-					<p v-if="error.statusCode == 404" class="text-2xl pb-8 text-gray-300 px-12 font-medium">Oops! The page you are looking for does not exist. It might have been moved or deleted.</p>
+					<h1 class="text-7xl  font-bold text-purple-400">
+						Error Code: {{ error.statusCode ? error.statusCode : error.response.status}}
+					</h1>
+					<h1 v-if="error.response.data" class="text-6xl text-gray-200 font-medium py-8">{{error.response?.data.error}}</h1>
+					<h1 v-else class="text-6xl text-gray-200 font-medium py-8">{{error.message}}</h1>
+					<p v-if="error.statusCode == 404 || error.response.status === 404" class="text-2xl pb-8 text-gray-300 px-12 font-medium">Oops! The page you are looking for does not exist. It might have been moved or deleted.</p>
 					<p v-else-if="error.description == ''" class="text-2xl pb-8 text-gray-300 px-12 font-medium">
-						{{error.description}}
+						{{error.message}}
 					</p>
 					<button @click="gotoHome" class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-purple-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
 						HOME
+					</button>
+					<button @click="copyErrorToClipboard(error)" class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-purple-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
+						Copy Full Error
 					</button>
 					<button class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-purple-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
 						Contact Us
@@ -22,11 +27,22 @@
 	</div>
 </template>
 
-<script setup>
-import {defineProps} from 'vue';
-const gotoHome = () => {
-	clearError({redirect: '/'})
+<script setup lang="ts">
+	import { defineProps } from 'vue';
+	const gotoHome = () => {
+		clearError({redirect: '/'})
+	}
+
+	const copyErrorToClipboard = (err: any) => {
+		if (err.response) {
+			navigator.clipboard.writeText(JSON.stringify(err.response))
+			return
+		}
+
+		navigator.clipboard.writeText(JSON.stringify(err))
 }
+
+
 defineProps({
 	error: Object,
 })

@@ -25,7 +25,7 @@ abstract class HttpClient {
 		})
 	}
 
-	private _responseInterceptor = () => {
+	private _responseInterceptor = async () => {
 		this.http.interceptors.response.use(
 			this._handleResponse,
 			this._handleError,
@@ -48,11 +48,17 @@ abstract class HttpClient {
 		}
 	};
 
-	protected _handleError = (err: AxiosError) => ({
-		error: err?.response,
-		status: err?.response.status,
-		Headers: err?.response.headers,
-	})
+	protected _handleError = (err: AxiosError) => {
+		if (err?.response.status > 399) {
+			return throwError(err)
+		}
+
+		return {
+			error: err?.response,
+			status: err?.response.status,
+			Headers: err?.response.headers,
+		}
+	}
 }
 
 export default HttpClient;

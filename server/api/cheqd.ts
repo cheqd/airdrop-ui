@@ -25,7 +25,7 @@ export type Breakdown = {
 
 export class CheqdRest extends HttpClient {
     public constructor() {
-        super('cheqd-mainnet-1', 'http://localhost:5000/auth')
+        super('cheqd-mainnet-1', '')
     }
 
 
@@ -34,17 +34,17 @@ export class CheqdRest extends HttpClient {
 	}
 
 	public claimRewards = async (addr: string) => {
-		const resp = await this.http.get( `https://claim-transactions.cheqd.workers.dev/claim/${addr}`)
+		const resp = await this.http.get( `https://claim-transactions.cheqd.net/claim/${addr}`)
 		return resp;
 	}
 
 	public checkAirdropEligibility = async (addr: string) => {
-		const resp = await this.http.get(`https://claim-transactions.cheqd.workers.dev/calculate/${addr}`)
+		const resp = await this.http.get(`https://claim-transactions.cheqd.net/calculate/${addr}`)
 		return resp;
 	}
 
 	public checkClaimProgress = async (addr: string) => {
-		const resp = await this.http.get(`https://claim-transactions.cheqd.workers.dev/progress/${addr}`)
+		const resp = await this.http.get(`https://claim-transactions.cheqd.net/progress/${addr}`)
 		return resp;
 	}
 }
