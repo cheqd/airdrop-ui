@@ -1,6 +1,10 @@
+import { AxiosError } from 'axios'
 import { defineNuxtConfig } from 'nuxt3'
 
 export default defineNuxtConfig({
+	errorHandler: (error: AxiosError, context: any) => {
+		clearError({redirect: '/error'})
+	},
 	routes: {
 		'/*': { prerender: true },
 	},
@@ -21,3 +25,5 @@ export default defineNuxtConfig({
 		preset: 'cloudflare'
 	}
 })
+
+
