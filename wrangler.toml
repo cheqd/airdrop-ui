@@ -1,0 +1,16 @@
+name = "airdrop-ui"
+type = "javascript"
+
+account_id = "***REMOVED***"
+workers_dev = true
+route = ""
+zone_id = "***REMOVED***"
+compatibility_date = "2022-03-16"
+
+[site]
+bucket = ".output/public"
+entry-point = ".output"
+
+[build]
+command = "true"
+upload.format = "service-worker"
