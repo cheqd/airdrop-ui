@@ -211,7 +211,7 @@ const calculateRewards = async (addr: string) => {
 	// if there's an error in this api call, user will be taken to an error page
 	const {valid, data } = await cheqdRest.checkAirdropEligibility(addr)
 	if (!valid) {
-		calculateState.message = "You are not eligible to receive a reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of our airdrop terms & conditions."
+		calculateState.message = "The wallet address provided is ineligible to receive a CHEQ token reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of our airdrop terms & conditions."
 		calculateState.inProgress = false
 		calculateState.success = false
 		calculateState.isStatusModalOpen = true
