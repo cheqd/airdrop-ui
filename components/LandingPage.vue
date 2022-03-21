@@ -86,6 +86,7 @@
           :message="calculateState.message"
           :toggleModal="toggleStatusModal"
           :success="calculateState.success"
+		  :withdrawn="calculateState.withdrawn"
           />
       </div>
       <div class="lg:pt-10 pt-4 flex flex-col justify-center text-center gap-0 lg:gap-2 items-center w-full">
@@ -128,6 +129,9 @@ const showToast = (msg: string, options?:any) => toast(msg, options);
 let initalClaimDone = ref(true);
 let showClaimForm = ref(false);
 let address = ref('');
+
+const terms_conditions = <string> 'https://support.cheqd.io/support/solutions/articles/101000384274-terms-conditions-of-cheqd-community-rewards-airdrops'
+const block_explorer = <string> 'https://explorer.cheqd.io'
 
 const toggleCheqdAddr = async () => {
 	const claimed = await cheqdRest.getInitalClaimInfo();
@@ -194,6 +198,7 @@ const calculateState = reactive({
 	isModalOpen: false,
 	inProgress: false,
 	success: false,
+	withdrawn: false,
 	isStatusModalOpen: false,
 	formError: '',
 	message: '',
@@ -209,14 +214,24 @@ const calculateRewards = async (addr: string) => {
 	calculateState.inProgress = true;
 	// error handling is done on server side
 	// if there's an error in this api call, user will be taken to an error page
-	const {valid, data } = await cheqdRest.checkAirdropEligibility(addr)
+	const { valid, data } = await cheqdRest.checkAirdropEligibility(addr)
 	if (!valid) {
-		calculateState.message = "The wallet address provided is ineligible to receive a CHEQ token reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of our airdrop terms & conditions."
+		calculateState.message = `The wallet address provided is ineligible to receive a CHEQ token reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of <a class="font-semibold underline" href="${terms_conditions}">our airdrop terms & conditions.</a>`
 		calculateState.inProgress = false
 		calculateState.success = false
+		calculateState.withdrawn = false
 		calculateState.isStatusModalOpen = true
 		return
 	}
+
+	if( valid && data.breakdown.total === 0 ) {
+			calculateState.message = `According to our records, you've already submitted a claim for CHEQ tokens for all associated wallet addresses. Please note that due to the volume of distributions to be carried out, it might take a few hours for the CHEQ tokens to be in your wallet. You can check the balance of your wallet <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">on our block explorer.</a>`
+			calculateState.inProgress = false
+			calculateState.success = true
+			calculateState.withdrawn = true
+			calculateState.isStatusModalOpen = true
+			return
+		}
 
 	calculateState.rewards = data
 	calculateState.inProgress = false

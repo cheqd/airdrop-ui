@@ -2,23 +2,24 @@
   <GenericModal :closeModal="toggleModal" :isOpen="isOpen">
     <div class="h-full w-full bg-[#140e2d] py-10 px-10 border-1 rounded-2xl border-gray-100">
       <div class="flex flex-col justify-center items-center w-full h-full">
-        <div v-if="!!success" class="mt-4">
+        <div v-if="success && !withdrawn" class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-			  🥳 Congratulations! Your CHEQ token rewards are on the way!
+	          🥳 Congratulations! Your CHEQ token rewards are on the way!
+          </label>
+        </div>
+        <div v-else-if="withdrawn" class="mt-4">
+          <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
+	          🤯 Oops! You've already claimed your reward.
           </label>
         </div>
         <div v-else class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-			😭 Sorry! Your wallet address is ineligible.
+			      😭 Sorry! Your wallet address is ineligible.
           </label>
         </div>
         <div class="mt-4">
-          <label class="lg:text-base text-lg text-gray-300 font-light">
-			  {{message}}
+          <label v-html="message" class="lg:text-base text-lg text-gray-300 font-light">
           </label>
-          <p v-if="!!success" @click="gotoExplorer(address)" class="cursor-pointer text-xl py-4 text-gray-300">
-            <span class="text-xl font-semibold py-4 text-gray-300">Check your wallet on block explorer</span>: <span class="text-xl underline font-medium py-4 text-gray-300">{{address}}</span>
-          </p>
         </div>
         <div class="mt-4 px-4 flex w-full justify-center gap-4">
           <button @click="toggleModal" 
@@ -44,6 +45,7 @@
 	const props = defineProps({
 		isOpen: Boolean,
 		success: Boolean,
+		withdrawn: Boolean,
 		message: String,
 		address: String,
 		toggleModal: Function,
