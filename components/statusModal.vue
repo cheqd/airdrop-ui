@@ -4,20 +4,20 @@
       <div class="flex flex-col justify-center items-center w-full h-full">
         <div v-if="!!success" class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-			  🥳 Congratulations!! Your rewards are on the way
+			  🥳 Congratulations! Your CHEQ token rewards are on the way!
           </label>
         </div>
         <div v-else class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-			😭 Sorry! Your wallet address is ineligible
+			😭 Sorry! Your wallet address is ineligible.
           </label>
         </div>
         <div class="mt-4">
-          <label class="lg:text-xl text-lg text-gray-300 font-semibold">
+          <label class="lg:text-base text-lg text-gray-300 font-light">
 			  {{message}}
           </label>
-          <p v-if="!!success" @click="gotoExplorer(address)" class="underline cursor-pointer text-sm font-light py-4 text-gray-300">
-            Check on Explorer: {{address}}
+          <p v-if="!!success" @click="gotoExplorer(address)" class="cursor-pointer text-xl py-4 text-gray-300">
+            <span class="text-xl font-semibold py-4 text-gray-300">Check your wallet on block explorer</span>: <span class="text-xl underline font-medium py-4 text-gray-300">{{address}}</span>
           </p>
         </div>
         <div class="mt-4 px-4 flex w-full justify-center gap-4">
