@@ -9,7 +9,7 @@ export type KeplrResponse = {
 
 export class Keplr extends HttpClient {
     public constructor() {
-        super('cheqd-mainnet-1', 'http://localhost:5000/auth')
+        super('cheqd-mainnet-1', '')
     }
 
 	private response = (resp: KeplrResponse): Promise<KeplrResponse> => {

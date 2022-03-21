@@ -25,7 +25,7 @@ export type Breakdown = {
 
 export class CheqdRest extends HttpClient {
     public constructor() {
-        super('cheqd-mainnet-1', 'http://localhost:5000/auth')
+        super('cheqd-mainnet-1', '')
     }
 
 
