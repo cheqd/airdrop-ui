@@ -52,8 +52,6 @@
 
 import {ref, } from 'vue';
 // @ts-ignore
-import Mission from './mission.vue';
-// @ts-ignore
 import Modal from './modal.vue';
 // @ts-ignore
 import Faq from './faq.vue';
@@ -66,32 +64,6 @@ const gotoHome = () => {
 }
 
 const showModal = ref(false);
-const missions = [
-	{ 
-		label:  "#1 - Stake at least 100 $CHEQ",
-		detail: "You can do it on any validator, with any amount, just make sure that the total amount staked is a 100 $CHEQ or more",
-		bgImgPath: "assets/images/stage-2-mission-1.png",
-		nextFunc: () => {
-			window.open("https://cheqd.omniflix.co/stake")
-		},
-	},
-	{ 
-		label:  "#2 - Provide Liquidity on Osmosis: OSMO/CHEQ",
-		detail: "Add at least 250 $CHEQ and the equivalent in OSMO on Liquidity Pool 602 (i.e. CHEQ:OSMO with a 50/50 balance)",
-		bgImgPath: "assets/images/stage-2-mission-2.png",
-		nextFunc: () => {
-			window.open("https://app.osmosis.zone/pool/602")
-		},
-	},
-	{ 
-		label:  "#3 - Provide Liquidity on Osmosis: ATOM/CHEQ",
-		detail: "Add at least 250 $CHEQ and the equivalent in ATOM on Liquidity Pool 617 (i.e. CHEQ:ATOM with a 50/50 balance)",
-		bgImgPath: "assets/images/stage-2-mission-3.png",
-		nextFunc: () => {
-			window.open("https://app.osmosis.zone/pool/617")
-		},
-	},
-]
 
 export default {
 	name: 'CheqdHero',
