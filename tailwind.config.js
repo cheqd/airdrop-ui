@@ -1,4 +1,4 @@
-export default {
+module.exports = {
 	important: true,
 	mode: 'jit',
 	purge: [
