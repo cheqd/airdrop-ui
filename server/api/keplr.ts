@@ -76,7 +76,7 @@ export class Keplr extends HttpClient {
 			return this.response(resp)
 		}
 
-		resp.error = "Keplr Extension has not been connected"
+		resp.error = "Unable to connect to Keplr Wallet"
 
 		return this.response(resp);
 	}
@@ -170,10 +170,12 @@ export class Keplr extends HttpClient {
 		},
 		coinType: 118,
 		gasPriceStep: {
-			low: 0.000000025,
-			average: 0.00000005,
-			high: 0.0000001,
+			low: 25,
+			average: 30,
+			high: 50,
 		},
+		features: ['stargate', 'ibc-transfer', 'no-legacy-stdTx'],
+		explorerUrlToTx: 'https://explorer.cheqd.io/transactions/{txHash}',
 	}
 
 	protected LocalStorageAddrKey: string = "cheqd_address";
