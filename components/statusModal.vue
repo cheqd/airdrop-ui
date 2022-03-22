@@ -9,7 +9,7 @@
         </div>
         <div v-else-if="withdrawn" class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-	          🤯 Oops! You've already claimed your reward.
+	          🤗 Oops! You've already claimed your reward.
           </label>
         </div>
         <div v-else class="mt-4">
