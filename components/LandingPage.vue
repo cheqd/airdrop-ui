@@ -182,7 +182,6 @@ const handleWalletConnect = async () => {
 		return
 	}
 
-	window.location.href="/stage-2"
 }
 
 const toggleCalculateModal = () => {
