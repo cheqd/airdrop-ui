@@ -20,8 +20,8 @@
 </template>
 
 <script>
-		import SideBarComponent from '../components/sb.vue';
-export default {
+	import SideBarComponent from '../components/sidebar.vue';
+	export default {
 	name: "Default",
 	components: {
 		SideBarComponent,

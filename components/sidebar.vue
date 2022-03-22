@@ -19,11 +19,11 @@
 				</p>
 				<p @click="openLink(1)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
 					<BeakerIcon class="w-8 h-8"/>
-					Am I eligible for the Mission 2, Stage 1? (staking ATOM, OSMO, JUNO)
+					What is the eligibility criteria for ATOM / OSMO / JUNO staking?
 				</p>
 				<p @click="openLink(2)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
 					<BeakerIcon class="w-8 h-8"/>
-					Am I eligible for Mission 2, Stage 2? (staking and LPing CHEQ)
+					What is the eligibility criteria for CHEQ staking / LPIng?
 				</p>
 			</div>
 			<div class="flex justify-center items-center">
@@ -33,7 +33,7 @@
 					class="px-4 bg-cheqd-dark-purple cursor-pointer hover:bg-opacity-60 py-2 rounded-md text-lg
 						text-gray-200 border border-gray-400"
 				>
-				Learn More
+				More support
 				</a>
 			</div>
 		</div>
@@ -60,17 +60,7 @@ export default {
 </script>
 
 <script setup lang="ts" type="module">
-import {ref, onBeforeMount} from 'vue';
-import {Keplr} from '../server/api/keplr';
-import { useToast, } from "vue-toastification";
-const toast = useToast();
-const showToast = (msg: string, options?:any) => toast(msg, options);
-
-const keplr = new Keplr();
-
-let walletAddress = ref('');
-let open = ref(false);
-
+import {ref} from 'vue';
 
 const openLink = (id: number) => {
 	switch (id) {
@@ -88,54 +78,4 @@ const openLink = (id: number) => {
 		}
 	}
 }
-
-onBeforeMount(async () => {
-	const {error, data } = await keplr.getAddressFromLocalStorage()
-	if (error) {
-		console.error(error)
-		return
-	}
-	walletAddress.value =data
-})
-
-const disconnectKeplr = async () => {
-	walletAddress.value = undefined;
-	keplr.disconnect();
-	window.location.href="/"
-	toggleDropDown()
-}
-
-const copyAddrToClipboard = () => {
-	navigator.clipboard.writeText(walletAddress.value);
-	toggleDropDown()
-}
-
-const toggleDropDown =() => {
-	open.value = !open.value
-}
-
-const handleDropdownMenu = async () => {
-	if (!walletAddress.value || walletAddress.value === '') {
-		const {error} = await keplr.keplrSuggestChain()
-		if (error) {
-			showToast(error, { type: "error" })
-			return
-		}
-
-		const resp = await keplr.getCheqAddress()
-		if (resp.error) {
-			showToast(resp.error, { type: "error" })
-			return
-		}
-		walletAddress.value = resp.data;
-		return
-	}
-
-	toggleDropDown();
-}
 </script>
-
-
-<style>
-
-</style>
