@@ -248,12 +248,8 @@ const validateAddress = async (e: any) => {
 		address.value = e.target.value;
 		calculateState.formError = '';
 	} catch (err) {
-		calculateState.formError = 'invalid address'
+		calculateState.formError = 'Invalid address'
 	}
 }
 
 </script>
-
-<style>
-
-</style>
