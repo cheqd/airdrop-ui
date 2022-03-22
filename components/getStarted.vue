@@ -120,7 +120,6 @@ export default {
 			return
 		}
 
-		window.location.href="/stage-2"
 	}
 </script>
 
