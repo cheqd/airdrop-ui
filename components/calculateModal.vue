@@ -4,7 +4,7 @@
       <div class="flex flex-col justify-center items-center w-full h-full">
         <div class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-          Congratulations!! You're eligible for the airdrop.
+          Congratulations! Your wallet address is eligible for the airdrop.
           </label>
           <p class="text-sm font-light py-4 text-gray-300">
             {{address}}
@@ -50,7 +50,7 @@
 					v-if="!!calculatedRewards.breakdown.tier_3"
                   class="text-green-600 h-4 w-4 lg:h-6 lg:w-6"
                   />
-                Juno Staking - {{calculatedRewards.breakdown.tier_3}} CHEQ
+                JUNO Staking - {{calculatedRewards.breakdown.tier_3}} CHEQ
               </label>
               <label class="flex items-center gap-1 py-2 text-gray-300 text-md lg:text-lg font-semibold">
                 <XIcon
