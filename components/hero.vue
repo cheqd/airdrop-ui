@@ -99,12 +99,6 @@ export default {
 		toggleModal() {
 			this.showModal = !this.showModal
 		},
-		osmosis() {
-			window.open("https://app.osmosis.zone/pool/602", "_blank")
-		},
-		omniflix() {
-			window.open("https://cheqd.omniflix.co", "_blank")
-		},
 		cheqdio() {
 			window.open("https://cheqd.io", "_blank")
 		},
