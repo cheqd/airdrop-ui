@@ -56,24 +56,8 @@
 		grid-template-columns: 25% 75%;
 		grid-auto-columns: minmax(100vh, auto);
 	}
-	.bg-img-vert {
-		background-image: url("assets/images/main-bg-orange-vertical.png");
-		background-repeat: 100% 100%;
-		background-size: cover;
-		height: 100%;
-		width: 100%;
-		z-index: 0;
-	}
 	.bg-img-dark {
 		background-image: url("assets/images/main-bg-dark-violet.png");
-		background-repeat: 100% 100%;
-		background-size: cover;
-		height: 100%;
-		width: 100%;
-		z-index: 0;
-	}
-	.bg-img {
-		background-image: url("assets/images/main-bg-red.png");
 		background-repeat: 100% 100%;
 		background-size: cover;
 		height: 100%;
