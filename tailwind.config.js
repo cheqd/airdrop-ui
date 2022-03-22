@@ -1,10 +1,10 @@
-module.exports = {
+export default {
 	important: true,
 	mode: 'jit',
 	purge: [
 		'./assets/**/*.{vue,js,css}',
 		"./components/**/*.{js,vue,ts}",
-		"./components/*.{vue}",
+		"./components/*.vue",
 		"./layouts/**/*.vue",
 		"./pages/**/*.vue",
 		"./plugins/**/*.{js,ts}",
