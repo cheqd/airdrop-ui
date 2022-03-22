@@ -40,12 +40,10 @@ export default {
 	name: 'CheqdHero',
 	layout: 'default',
 	components: {
-		Mission,
 		Modal,
 	},
 	setup() {
 		return {
-			missions,
 			showModal,
 		}
 	},
@@ -69,9 +67,6 @@ export default {
 		},
 		toggleModal() {
 			this.showModal = !this.showModal
-		},
-		cheqdio() {
-			window.open("https://cheqd.io", "_blank")
 		},
 	}
 }
