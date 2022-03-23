@@ -2,15 +2,14 @@
   <client-only>
     <div class="h-full min-h-[100vh] max-h-max w-full flex flex-col justify-start items-center 2xl:justify-center">
     <div class="py-4">
-      <label class="text-5xl font-bold text-gray-100 2xl:text-6xl">CHEQ Airdrop</label>
+      <label class="text-5xl font-bold text-gray-100 2xl:text-6xl">Claim CHEQ Airdrop</label>
       {{scope}}
     </div>
     <div :class="minWindowHeightPx" class="2xl:h-2/3 py-4 lg:py-8 w-5/6 bg-purple-200 bg-opacity-20 flex flex-col justify-center items-center border-1 border-gray-300 rounded-2xl"
       >
       <div class="flex flex-col text-center ">
-        <label class="text-3xl font-semibold text-gray-200 2xl:text-5xl">Claim Airdrop</label>
         <span class="text-md lg:text-lg text-gray-200 mt-2 lg:mt-4 2xl:text-2xl">
-        Connect your wallet using Keplr Extension or enter your wallet to calculate your rewards
+        Connect your Keplr Wallet extension or enter your wallet address to calculate your rewards
         </span>
       </div>
       <div class="h-6 lg:h-16" />
@@ -22,7 +21,7 @@
                 d="M6.4 0H25.6C29.1347 0 32 2.86539 32 6.4V25.6C32 29.1347 29.1347 32 25.6 32H6.4C2.86539 32 0 29.1347 0 25.6V6.4C0 2.86539 2.86539 0 6.4 0ZM11.264 17.28V27.2H7.04004V4.8H11.264V14.272L19.776 4.8H25.024V4.928L15.072 15.648L25.856 26.944V27.2H20.64L11.264 17.28Z"/>
             </svg>
             <span class="font-semibold text-gray-100 2xl:text-xl">
-            Connect Keplr
+            Connect Keplr Wallet
             </span>
           </button>
           <label class="hidden lg:block px-4 font-semibold text-gray-100 2xl:text-xl">Or</label>
@@ -30,7 +29,7 @@
             class="rounded-lg w-5/6 bg-cheqd-dark-purple gap-2 hover:bg-opacity-60 max-w-md h-16 px-4 inline-flex justify-center items-center 2xl:h-20 2xl:w-3/5">
             <CreditCardIcon class="fill-inherit text-gray-100 h-8 w-8" />
             <span class="font-semibold text-gray-100 2xl:text-xl">
-            Continue with your wallet address
+            Manually enter wallet address
             </span>
           </button>
         </div>
@@ -86,6 +85,7 @@
           :message="calculateState.message"
           :toggleModal="toggleStatusModal"
           :success="calculateState.success"
+		  :withdrawn="calculateState.withdrawn"
           />
       </div>
       <div class="lg:pt-10 pt-4 flex flex-col justify-center text-center gap-0 lg:gap-2 items-center w-full">
@@ -128,6 +128,9 @@ const showToast = (msg: string, options?:any) => toast(msg, options);
 let initalClaimDone = ref(true);
 let showClaimForm = ref(false);
 let address = ref('');
+
+const terms_conditions = <string> 'http://cheqd.link/airdrop-terms'
+const block_explorer = <string> 'https://explorer.cheqd.io'
 
 const toggleCheqdAddr = async () => {
 	const claimed = await cheqdRest.getInitalClaimInfo();
@@ -179,7 +182,6 @@ const handleWalletConnect = async () => {
 		return
 	}
 
-	window.location.href="/stage-2"
 }
 
 const toggleCalculateModal = () => {
@@ -194,6 +196,7 @@ const calculateState = reactive({
 	isModalOpen: false,
 	inProgress: false,
 	success: false,
+	withdrawn: false,
 	isStatusModalOpen: false,
 	formError: '',
 	message: '',
@@ -209,14 +212,24 @@ const calculateRewards = async (addr: string) => {
 	calculateState.inProgress = true;
 	// error handling is done on server side
 	// if there's an error in this api call, user will be taken to an error page
-	const {valid, data } = await cheqdRest.checkAirdropEligibility(addr)
+	const { valid, data } = await cheqdRest.checkAirdropEligibility(addr)
 	if (!valid) {
-		calculateState.message = "You are not eligible to receive a reward. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of our airdrop terms & conditions."
+		calculateState.message = `The wallet address provided is ineligible to receive CHEQ token rewards. This is either because you have submitted an invalid address, did not meet the qualification criteria for this airdrop, or due to a violation of <a class="font-semibold underline" href="${terms_conditions}">our airdrop terms & conditions</a>.`
 		calculateState.inProgress = false
 		calculateState.success = false
+		calculateState.withdrawn = false
 		calculateState.isStatusModalOpen = true
 		return
 	}
+
+	if( valid && data.breakdown.total === 0 ) {
+			calculateState.message = `Our records indicate that you've already submitted a claim for CHEQ tokens for all associated wallet addresses. Please note that due to the volume of distributions being carried out, it might take a few hours for the CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
+			calculateState.inProgress = false
+			calculateState.success = true
+			calculateState.withdrawn = true
+			calculateState.isStatusModalOpen = true
+			return
+		}
 
 	calculateState.rewards = data
 	calculateState.inProgress = false
@@ -235,12 +248,8 @@ const validateAddress = async (e: any) => {
 		address.value = e.target.value;
 		calculateState.formError = '';
 	} catch (err) {
-		calculateState.formError = 'invalid address'
+		calculateState.formError = 'Invalid address'
 	}
 }
 
 </script>
-
-<style>
-
-</style>

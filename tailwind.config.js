@@ -4,7 +4,7 @@ module.exports = {
 	purge: [
 		'./assets/**/*.{vue,js,css}',
 		"./components/**/*.{js,vue,ts}",
-		"./components/*.{vue}",
+		"./components/*.vue",
 		"./layouts/**/*.vue",
 		"./pages/**/*.vue",
 		"./plugins/**/*.{js,ts}",
@@ -33,11 +33,6 @@ module.exports = {
 				'cheqd-grad-50': "#da1884",
 				'cheqd-grad-400': "#221c45",
 			},
-			backgroundImage: {
-				'main-bg-orange': "url('assets/images/main-bg-orange.png')",
-				'main-bg-orange-veritcal': "url('assets/images/main-bg-orange-vertical.png')",
-				'modal-bg-orange': "url('assets/images/modal-bg-red.png')",
-			}
 		},
 	},
 	plugins: [],

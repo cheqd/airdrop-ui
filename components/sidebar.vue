@@ -1,127 +1,81 @@
 <template>
-	<div class="flex flex-col gap-3 justify-center items-center w-1/5 2xl:gap-10">
-		<!-- Need to add some padding at the top of Cheqd Logo -->
-		<div class="h-5"/>
-
-		<picture>
-			<img class="pl-5 w-56 2xl:w-64" src="assets/images/cheqd-logo-wordmark-black.png" />
-		</picture>
-		<div class="mt-4">
-			<Menu :v-slot="{ open }" as="div" class="relative inline-block text-left">
-				<div  class="max-w-md">
-					<MenuButton @click="handleDropdownMenu"
-						class="cursor-pointer inline-flex justify-center w-full px-5 py-4 text-sm font-medium text-white bg-cheqd-dark-purple rounded-md hover:bg-opacity-60 :outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-						<label class="cursor-pointer" v-show="!walletAddress">Connect Keplr Wallet</label>
-						<label class="cursor-pointer truncate max-w-[15rem]" :v-show="walletAddress">{{walletAddress}}</label>
-						<ChevronDownIcon v-show="walletAddress" class="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100" aria-hidden="true" />
-					</MenuButton>
-				</div>
-				<transition
-					enter-active-class="transition duration-100 ease-out"
-					enter-from-class="transform scale-95 opacity-0"
-					enter-to-class="transform scale-100 opacity-100"
-					leave-active-class="transition duration-75 ease-in"
-					leave-from-class="transform scale-100 opacity-100"
-					leave-to-class="transform scale-95 opacity-0"
-				>
-					<div v-show="open">
-						<MenuItems static
-							class="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-						>
-							<div class="px-1 py-1 bg-gray-100">
-								<MenuItem v-slot="{ active }">
-									<button @click="copyAddrToClipboard"
-										:class="[
-										active ? 'bg-blue-200 text-black' : 'text-gray-700',
-										'group flex rounded-md items-center w-full px-2 py-2 text-sm',
-										]"
-									>
-										Copy Address
-									</button>
-								</MenuItem>
-								<MenuItem v-slot="{ active }">
-									<button @click="disconnectKeplr"
-										:class="[ active ? 'bg-blue-200 text-black' : 'text-gray-700',
-										'group flex rounded-md items-center w-full px-2 py-2 text-sm', ]"
-									>
-										Disconnect
-									</button>
-								</MenuItem>
-							</div>
-						</MenuItems>
-					</div>
-				</transition>
-			</Menu>
+	<client-only>
+	<div class="h-full min-h-[70vh] lg:min-h-screen w-full flex flex-col justify-start items-center">
+		<div class="hidden lg:block pt-2">
+			<a href="/">
+				<img class="w-56 2xl:w-64" src="https://aryteric.sirv.com/Images/cheqd-logo-light.png" />
+			</a>
 		</div>
-	<div>
-    <Faq />
-  </div>
-</div>
+
+		<div>
+		<div class="w-full h-full pt-8">
+			<div
+				class="text-left divide-y divide-gray-500 cursor-pointer w-full py-2 mx-auto">
+				<h2 class="text-2xl py-2 px-2 text-gray-200 text-left">FAQ</h2>
+
+				<p @click="openLink(0)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
+					<BeakerIcon class="w-8 h-8"/>
+					What is Mission Two of the cheqd community airdrop?
+				</p>
+				<p @click="openLink(1)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
+					<BeakerIcon class="w-8 h-8"/>
+					What is the eligibility criteria for ATOM / OSMO / JUNO staking?
+				</p>
+				<p @click="openLink(2)" class="text-sm inline-flex gap-3 items-center text-gray-300 h-28 w-full 2xl:text-lg">
+					<BeakerIcon class="w-8 h-8"/>
+					What is the eligibility criteria for CHEQ staking / LPIng?
+				</p>
+			</div>
+			<div class="flex justify-center items-center">
+				<a 
+					href="https://support.cheqd.io/support/home"
+					target="_blank"
+					class="px-4 bg-cheqd-dark-purple cursor-pointer hover:bg-opacity-60 py-2 rounded-md text-lg
+						text-gray-200 border border-gray-400"
+				>
+				More support
+				</a>
+			</div>
+		</div>
+		</div>
+	</div>
+	</client-only>
 </template>
 
-<script >
+<script lang="ts" type="module">
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { BeakerIcon } from '@heroicons/vue/outline'
+import { ChevronDownIcon } from '@heroicons/vue/solid'
+export default {
+	name: "SideBarComponent",
+	components: {
+		Menu,
+		MenuButton,
+		MenuItem,
+		MenuItems,
+		BeakerIcon,
+		ChevronDownIcon,
+	}
+}
 </script>
 
 <script setup lang="ts" type="module">
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/solid'
-import {ref, onBeforeMount} from 'vue';
-import {Keplr} from '../server/api/keplr';
-import { useToast, } from "vue-toastification";
-const toast = useToast();
-const showToast = (msg: string, options?:any) => toast(msg, options);
+import {ref} from 'vue';
 
-const keplr = new Keplr();
-
-let walletAddress = ref('');
-let open = ref(false);
-
-onBeforeMount(async () => {
-	const {error, data } = await keplr.getAddressFromLocalStorage()
-	if (error) {
-		console.error(error)
-		return
-	}
-	walletAddress.value =data
-})
-
-const disconnectKeplr = async () => {
-	walletAddress.value = undefined;
-	keplr.disconnect();
-	window.location.href="/"
-	toggleDropDown()
-}
-
-const copyAddrToClipboard = () => {
-	navigator.clipboard.writeText(walletAddress.value);
-	toggleDropDown()
-}
-
-const toggleDropDown =() => {
-	open.value = !open.value
-}
-
-const handleDropdownMenu = async () => {
-	if (!walletAddress.value || walletAddress.value === '') {
-		const {error} = await keplr.keplrSuggestChain()
-		if (error) {
-			showToast(error, { type: "error" })
-			return
+const openLink = (id: number) => {
+	switch (id) {
+		case 0: {
+			window.open( 'https://support.cheqd.io/support/solutions/articles/101000384269-what-is-mission-two-of-the-cheqd-community-airdrop')
+			break
 		}
-
-		const resp = await keplr.getCheqAddress()
-		if (resp.error) {
-			showToast(resp.error, { type: "error" })
-			return
+		case 1: {
+			window.open( 'https://support.cheqd.io/support/solutions/articles/101000384272-eligibility-criteria-for-atom-osmo-and-juno-stakers ')
+			break
 		}
-		walletAddress.value = resp.data;
-		return
+		case 2: {
+			window.open( 'https://support.cheqd.io/support/solutions/articles/101000384781-eligibility-criteria-for-cheq-staking-dex-liquidity-pools')
+			break
+		}
 	}
-
-	toggleDropDown();
 }
-
 </script>
-<style>
-
-</style>

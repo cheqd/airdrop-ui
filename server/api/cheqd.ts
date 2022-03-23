@@ -48,4 +48,3 @@ export class CheqdRest extends HttpClient {
 		return resp;
 	}
 }
- 

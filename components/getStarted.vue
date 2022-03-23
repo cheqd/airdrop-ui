@@ -31,7 +31,7 @@
 				  <button :class="!showClaimForm ? 'mb-10' : ''" @click="toggleCheqdAddr" class="rounded-lg w-96 gap-2 bg-gray-600 border-cheqd-dark-purple hover:bg-gray-800 border-2 border-solid max-w-md py-3 px-4 inline-flex justify-center items-center">
 					  <img class="w-8 h-8" src="https://aryteric.sirv.com/Images/cheqd-icon-logo.png" alt="">
 					  <span class="font-semibold text-gray-100">
-						  Continue with your CHEQ Address
+						  Continue with your CHEQ wallet address
 					  </span>
 				  </button>
 			  </div>
@@ -120,7 +120,6 @@ export default {
 			return
 		}
 
-		window.location.href="/stage-2"
 	}
 </script>
 
