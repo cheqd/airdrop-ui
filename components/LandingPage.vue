@@ -2,7 +2,7 @@
   <client-only>
     <div class="h-full min-h-[100vh] max-h-max w-full flex flex-col justify-start items-center 2xl:justify-center">
     <div class="py-4">
-      <label class="text-5xl font-bold text-gray-100 2xl:text-6xl">Claim CHEQ Airdrop</label>
+      <label class="text-5xl font-bold text-gray-100 2xl:text-6xl">CHEQ Airdrop</label>
       {{scope}}
     </div>
     <div :class="minWindowHeightPx" class="2xl:h-2/3 py-4 lg:py-8 w-5/6 bg-purple-200 bg-opacity-20 flex flex-col justify-center items-center border-1 border-gray-300 rounded-2xl"
