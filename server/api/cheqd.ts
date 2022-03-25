@@ -9,6 +9,7 @@ export type ClaimTier = {
 
 export type CalculateRewards = {
   valid: boolean
+  withdrawn: boolean
   breakdown: Breakdown
 }
 
@@ -27,7 +28,6 @@ export class CheqdRest extends HttpClient {
     public constructor() {
         super('cheqd-mainnet-1', '')
     }
-
 
 	public getInitalClaimInfo = async () => {
 		return Promise.resolve(false);
