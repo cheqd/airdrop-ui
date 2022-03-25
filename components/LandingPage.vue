@@ -113,9 +113,11 @@ export default {
 
 <script setup lang="ts" type="module">
 import {onBeforeMount, ref} from 'vue';
+import { bech32 } from 'bech32'
 
 import {Keplr} from '../server/api/keplr';
 import {CheqdRest} from '../server/api/cheqd';
+
 const keplr = new Keplr();
 const cheqdRest = new CheqdRest();
 
@@ -131,6 +133,10 @@ let address = ref('');
 
 const terms_conditions = <string> 'http://cheqd.link/airdrop-terms'
 const block_explorer = <string> 'https://explorer.cheqd.io'
+
+const convert_to_base_network = (addr: string) => {
+	return bech32.encode( 'cheqd', bech32.decode( addr ).words )
+}
 
 const toggleCheqdAddr = async () => {
 	const claimed = await cheqdRest.getInitalClaimInfo();
@@ -223,16 +229,18 @@ const calculateRewards = async (addr: string) => {
 	}
 
 	if( valid && data.breakdown.total === 0 ) {
-			calculateState.message = `Our records indicate that you've already submitted a claim for CHEQ tokens for all associated wallet addresses. Please note that due to the volume of distributions being carried out, it might take a few hours for the CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
-			calculateState.inProgress = false
-			calculateState.success = true
-			calculateState.withdrawn = true
-			calculateState.isStatusModalOpen = true
-			return
-		}
+		address.value = convert_to_base_network( address.value )
+		calculateState.message = `Our records indicate that you've already submitted a claim for CHEQ tokens for all associated wallet addresses. Please note that due to the volume of distributions being carried out, it might take a few hours for the CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
+		calculateState.inProgress = false
+		calculateState.success = true
+		calculateState.withdrawn = true
+		calculateState.isStatusModalOpen = true
+		return
+	}
 
 	calculateState.rewards = data
 	calculateState.inProgress = false
+	address.value = convert_to_base_network( address.value )
 
 	toggleCalculateModal();
 }
