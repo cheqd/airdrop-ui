@@ -21,8 +21,8 @@ export type Breakdown = {
   tier_5: number
   tier_6: number
   total: number
+  withdrawn: number
 }
-
 
 export class CheqdRest extends HttpClient {
     public constructor() {
