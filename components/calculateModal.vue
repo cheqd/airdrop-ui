@@ -4,7 +4,7 @@
       <div class="flex flex-col justify-center items-center w-full h-full">
         <div class="mt-4">
           <label class="lg:text-2xl text-xl text-gray-300 font-semibold">
-          Congratulations! Your wallet address is eligible for the airdrop.
+          🥳 Hooray! Your wallet is eligible!
           </label>
           <p class="text-sm font-light py-4 text-gray-300">
             {{address}}
