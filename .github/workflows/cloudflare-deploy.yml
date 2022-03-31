@@ -1,4 +1,4 @@
-name: cloudflare
+name: Cloudflare Deploy
 
 on:
   push:
@@ -47,3 +47,4 @@ jobs:
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          environment: 'production'
