@@ -26,6 +26,14 @@
               {{calculatedRewards.breakdown.withdrawn}} CHEQ
               </label>
             </div>
+            <div class="flex justify-center flex-col items-center text-center">
+              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              Pending
+              </label>
+              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              {{calculatedRewards.breakdown.pending}} CHEQ
+              </label>
+            </div>
             <div class="flex items-center lg:items-start flex-col">
               <label class="flex items-center gap-1 py-2 text-gray-300 text-md lg:text-lg font-semibold">
                 <XIcon
