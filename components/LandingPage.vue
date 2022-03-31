@@ -231,7 +231,7 @@ const calculateRewards = async (addr: string) => {
 
 	if( valid && data.withdrawn ) {
 		address.value = convert_to_base_network( address.value )
-		calculateState.message = `Our records indicate that you've already submitted a claim for CHEQ tokens for all associated wallet addresses. Please note that due to the volume of distributions being carried out, it might take a few hours for the CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
+		calculateState.message = `Our records indicate that you've already submitted a claim for CHEQ tokens. Please note that due to the volume of distributions being carried out, it might take up to 24 hours for CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
 		calculateState.inProgress = false
 		calculateState.success = true
 		calculateState.withdrawn = true
@@ -239,6 +239,7 @@ const calculateRewards = async (addr: string) => {
 		return
 	}
 
+	calculateState.message = `Your claim submission was successfully recorded! Please note that due to the volume of distributions being carried out, it might take up to 24 hours for CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
 	calculateState.rewards = data
 	calculateState.inProgress = false
 	address.value = convert_to_base_network( address.value )

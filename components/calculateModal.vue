@@ -114,6 +114,7 @@
             </span>
           </button>
           <button type="button"
+            v-if="calculatedRewards.breakdown.pending + calculatedRewards.breakdown.withdrawn < calculatedRewards.breakdown.total"
             @click="claimRewards(address)"
             class="inline-flex justify-center px-4 py-2 text-md font-medium bg-cheqd-purple-light border border-gray-100 rounded-md hover:bg-cheqd-purple-light focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cheqd-purple-light-500"
             >
