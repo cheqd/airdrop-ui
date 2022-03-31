@@ -40,7 +40,7 @@ export class CheqdRest extends HttpClient {
 	}
 
 	public checkAirdropEligibility = async (addr: string) => {
-		const resp = await this.http.get(`https://claim-transactions.cheqd.workers.dev/calculate/${addr}`)
+		const resp = <CalculateRewards> await this.http.get(`https://claim-transactions.cheqd.workers.dev/calculate/${addr}`)
 		return resp;
 	}
 

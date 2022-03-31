@@ -45,6 +45,7 @@ abstract class HttpClient {
 			status: status, 
 			headers: headers,
 			valid: data.valid,
+			breakdown: data.breakdown,
 		}
 	};
 
