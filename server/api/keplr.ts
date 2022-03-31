@@ -138,6 +138,13 @@ export class Keplr extends HttpClient {
 		chainName: "cheqd",
 		rpc: "https://rpc.cheqd.net",
 		rest: "https://api.cheqd.net",
+		walletUrlForStaking: "https://cheqd.omniflix.co",
+		stakeCurrency: {
+			coinDenom: 'CHEQ',
+			coinMinimalDenom: 'ncheq',
+			coinDecimals: 9,
+			coinGeckoId: 'cheqd-network',
+		},
 		bip44: {
 			coinType: 118,
 		},
@@ -149,33 +156,29 @@ export class Keplr extends HttpClient {
 			bech32PrefixConsAddr: "cheqd" + "valcons",
 			bech32PrefixConsPub: "cheqd" + "valconspub",
 		},
-		currencies: [ 
-			{ 
-				coinDenom: "CHEQ", 
-				coinMinimalDenom: "ncheq", 
+		currencies: [
+			{
+				coinDenom: "CHEQ",
+				coinMinimalDenom: "ncheq",
 				coinDecimals: 9,
-			}, 
+				coinGeckoId: "cheqd-network",
+			},
 		],
 		feeCurrencies: [
 			{
 				coinDenom: "CHEQ",
 				coinMinimalDenom: "ncheq",
 				coinDecimals: 9,
+				coinGeckoId: "cheqd-network",
 			},
 		],
-		stakeCurrency: {
-			coinDenom: "CHEQ",
-			coinMinimalDenom: "ncheq",
-			coinDecimals: 9,
-		},
-		coinType: 118,
 		gasPriceStep: {
 			low: 25,
 			average: 30,
 			high: 50,
 		},
-		features: ['stargate', 'ibc-transfer', 'no-legacy-stdTx'],
-		explorerUrlToTx: 'https://explorer.cheqd.io/transactions/{txHash}',
+		features: ["stargate", "ibc-transfer", "no-legacy-stdTx"],
+		explorerUrlToTx: "https://explorer.cheqd.io/transactions/{txHash}",
 	}
 
 	protected LocalStorageAddrKey: string = "cheqd_address";
