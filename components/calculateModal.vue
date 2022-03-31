@@ -11,29 +11,38 @@
           </p>
           <div class="w-full flex flex-col lg:flex-row justify-around items-center px-0 mx-0">
             <div class="flex justify-center flex-col items-center text-center">
-              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              <label class="flex items-center text-gray-300 text-xl font-semibold">
               Total Rewards
               </label>
-              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              <label class="flex items-center text-gray-300 text-lg font-light">
               {{calculatedRewards.breakdown.total}} CHEQ
               </label>
             </div>
+          </div>
+          <div class="w-full flex flex-col lg:flex-row justify-around items-center px-0 mx-0">
             <div class="flex justify-center flex-col items-center text-center">
-              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              <label class="flex items-center text-gray-300 text-xl font-semibold">
               Withdrawn
               </label>
-              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              <label class="flex items-center text-gray-300 text-lg font-light">
               {{calculatedRewards.breakdown.withdrawn}} CHEQ
               </label>
             </div>
+          </div>
+          <div class="w-full flex flex-col lg:flex-row justify-around items-center px-0 mx-0">
             <div class="flex justify-center flex-col items-center text-center">
-              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              <label class="flex items-center text-gray-300 text-xl font-semibold">
               Pending
               </label>
-              <label class="flex items-center text-gray-300 text-lg font-semibold">
+              <label class="flex items-center text-gray-300 text-lg font-light">
               {{calculatedRewards.breakdown.pending}} CHEQ
               </label>
             </div>
+          </div>
+          <div 
+            v-if="calculatedRewards.breakdown.pending + calculatedRewards.breakdown.withdrawn < calculatedRewards.breakdown.total"
+            class="w-full flex flex-col lg:flex-row justify-around items-center px-0 mx-0"
+          >
             <div class="flex items-center lg:items-start flex-col">
               <label class="flex items-center gap-1 py-2 text-gray-300 text-md lg:text-lg font-semibold">
                 <XIcon
