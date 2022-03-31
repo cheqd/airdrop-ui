@@ -180,14 +180,14 @@
 			return
 		}
 
-		if (valid && data.withdrawn) {
+		/*if (valid && data.withdrawn) {
 			claimState.message = data.message
 			claimState.success = true;
 			claimState.inProgress = false;
 			props.toggleModal()
 			claimState.isModalOpen = true;
 			return
-		}
+		}*/
 
 		claimState.success = true
 		claimState.message = data.message;

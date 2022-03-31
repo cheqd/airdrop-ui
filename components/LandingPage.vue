@@ -229,13 +229,26 @@ const calculateRewards = async (addr: string) => {
 		return
 	}
 
-	if( valid && data.withdrawn ) {
+	if( valid && ( data.breakdown.pending + data.breakdown.withdrawn >= data.breakdown.total ) ) {
 		address.value = convert_to_base_network( address.value )
 		calculateState.message = `Our records indicate that you've already submitted a claim for CHEQ tokens. Please note that due to the volume of distributions being carried out, it might take up to 24 hours for CHEQ tokens to be in your wallet. You can check the <a class="font-semibold underline" href="${block_explorer}/accounts/${address.value}">balance of your wallet on our block explorer</a>.`
 		calculateState.inProgress = false
 		calculateState.success = true
 		calculateState.withdrawn = true
-		calculateState.isStatusModalOpen = true
+
+		toggleCalculateModal()
+
+		return
+	}
+
+	if( valid && ( data.breakdown.pending + data.breakdown.withdrawn ) < data.breakdown.total ) {
+		address.value = convert_to_base_network( address.value )
+		calculateState.message = ``
+		calculateState.inProgress = false
+		calculateState.withdrawn = false
+
+		toggleCalculateModal()
+
 		return
 	}
 
