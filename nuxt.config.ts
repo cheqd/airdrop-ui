@@ -19,11 +19,14 @@ export default defineNuxtConfig({
 		},
 	},
 	css: [
-		"~/assets/css/main.css"
+		"assets/css/main.css"
 	],
 	nitro: {
 		preset: 'cloudflare'
 	},
+	link: [
+		{ rel: 'icon', type: 'image/x-icon', href: 'assets/images/favicon.ico' }
+	  ]
 })
 
 
