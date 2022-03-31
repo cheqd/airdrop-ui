@@ -253,7 +253,7 @@ const validateAddress = async (e: any) => {
 	}
 
 	try {
-		const { data } = await keplr.validateCosmosNetowrkAddress(e.target.value);
+		const { data } = await keplr.validateCosmosNetworkAddress(e.target.value);
 		address.value = e.target.value;
 		calculateState.formError = '';
 	} catch (err) {

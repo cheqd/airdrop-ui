@@ -86,7 +86,7 @@ export class Keplr extends HttpClient {
 		return bech32.encode(prefix, raw.words)
 	}
 
-	public validateCosmosNetowrkAddress = (addr: string) => {
+	public validateCosmosNetworkAddress = (addr: string) => {
 		let resp: KeplrResponse = {}
 
 		try {
