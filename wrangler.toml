@@ -13,6 +13,3 @@ entry-point = ".output"
 [build]
 command = "true"
 upload.format = "service-worker"
-
-[env.production]
-routes = ""
