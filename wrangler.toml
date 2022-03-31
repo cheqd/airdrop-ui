@@ -13,4 +13,4 @@ entry-point = ".output"
 
 [build]
 command = "true"
-format = "service-worker"
+upload.format = "service-worker"
