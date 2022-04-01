@@ -201,6 +201,8 @@
 		claimState.success = true
 		claimState.message = data.message;
 		claimState.inProgress = false
+    claimState.isModalOpen = true
+    props.toggleModal()
 	}
 
 
