@@ -32,7 +32,7 @@
           <div class="w-full flex flex-col lg:flex-row justify-around items-center px-0 mx-0">
             <div class="flex justify-center flex-col items-center text-center">
               <label class="flex items-center text-gray-300 text-xl font-semibold">
-              Pending
+              In Progress
               </label>
               <label class="flex items-center text-gray-300 text-lg font-light">
               {{calculatedRewards.breakdown.pending}} CHEQ
